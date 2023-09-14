@@ -1,31 +1,21 @@
-# RepositorioTemplate
-Esse repositório é para ser utilizado pelos grupos como um template inicial, da home page do Projeto.
-As seções do Template NÃO DEVEM SER OMITIDAS, sendo TODAS RELEVANTES.
-
-**!! *Atenção: Renomeie o seu repositório para (Ano.Semestre)_(Grupo)_(Paradigma)_(NomeDoProjeto)*. !!** 
-
-Paradigmas:
- - Funcional
- - Logico
- - SMA
-
-**!! *Não coloque os nomes dos alunos no título do repositório*. !!**
-
-**!! *Exemplo de título correto: 2023.2_G1_Logico_ProjetoRoteirosAereos*. !!**
- 
- (Apague esses comentários)
-
 # NomeDoProjeto
 
 **Disciplina**: FGA0210 - PARADIGMAS DE PROGRAMAÇÃO - T01 <br>
-**Nro do Grupo (de acordo com a Planilha de Divisão dos Grupos)**: XX<br>
-**Paradigma**: XXXXXXXXXX<br>
+**Nro do Grupo**: 02<br>
+**Paradigma**: Funcional<br>
 
 ## Alunos
 |Matrícula | Aluno |
 | -- | -- |
-| xx/xxxxxx  |  xxxx xxxx xxxxx |
-| xx/xxxxxx  |  xxxx xxxx xxxxx |
+| 20/0013181 | Adne Moretti Moreira |
+| 20/0057227 | Caio Vitor Carneiro de Oliveira |
+| 19/0085819 | Cícero Barrozo Fernandes Filho |
+| 19/0026758 | Deivid Alves de Carvalho |
+| 19/0045817 | Gabriel Costa de Oliveira |
+| 20/0018205 | Gabriel Moretti de Souza |
+| 20/0019015 | Guilherme Puida Moreira |
+| 20/0067923 | João Henrique Marques Calzavara |
+| 20/2023903 | Lucas Lopes Rocha |
 
 ## Sobre 
 Descreva o seu projeto em linhas gerais. 
@@ -61,7 +51,15 @@ TEMPO: +/- 15min
 Apresente, brevemente, como cada membro do grupo contribuiu para o projeto.
 |Nome do Membro | Contribuição | Significância da Contribuição para o Projeto (Excelente/Boa/Regular/Ruim/Nula) |
 | -- | -- | -- |
-| Fulano  |  Programação dos Fatos da Base de Conhecimento Lógica | Boa |
+| Adne Moretti Moreira | Programação dos Fatos da Base de Conhecimento Lógica | Boa |
+| Caio Vitor Carneiro de Oliveira | Programação dos Fatos da Base de Conhecimento Lógica | Boa |
+| Cícero Barrozo Fernandes Filho | Programação dos Fatos da Base de Conhecimento Lógica | Boa |
+| Deivid Alves de Carvalho | Programação dos Fatos da Base de Conhecimento Lógica | Boa |
+| Gabriel Costa de Oliveira | Programação dos Fatos da Base de Conhecimento Lógica | Boa |
+| Gabriel Moretti de Souza | Programação dos Fatos da Base de Conhecimento Lógica | Boa |
+| Guilherme Puida Moreira | Programação dos Fatos da Base de Conhecimento Lógica | Boa |
+| João Henrique Marques Calzavara | Programação dos Fatos da Base de Conhecimento Lógica | Boa |
+| Lucas Lopes Rocha | Programação dos Fatos da Base de Conhecimento Lógica | Boa |
 
 ## Outros 
 Quaisquer outras informações sobre o projeto podem ser descritas aqui. Não esqueça, entretanto, de informar sobre:

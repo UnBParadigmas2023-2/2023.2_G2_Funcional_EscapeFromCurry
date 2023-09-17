@@ -43,7 +43,7 @@ getBinDir, getLibDir, getDynLibDir, getDataDir, getLibexecDir, getSysconfDir :: 
 
 bindir, libdir, dynlibdir, datadir, libexecdir, sysconfdir :: FilePath
 bindir     = "/home/gabriel/Desktop/2023.2/PP/haskell/2023.2_G2_Funcional/.stack-work/install/x86_64-linux-tinfo6/716ab45214ee2d8838050bc7e092a772cabfe35cc4887821897b36c885b65c8f/9.4.7/bin"
-libdir     = "/home/gabriel/Desktop/2023.2/PP/haskell/2023.2_G2_Funcional/.stack-work/install/x86_64-linux-tinfo6/716ab45214ee2d8838050bc7e092a772cabfe35cc4887821897b36c885b65c8f/9.4.7/lib/x86_64-linux-ghc-9.4.7/EscapeFromCurry-0.1.0.0-5KluApCzguY5CWZuaFr1tU"
+libdir     = "/home/gabriel/Desktop/2023.2/PP/haskell/2023.2_G2_Funcional/.stack-work/install/x86_64-linux-tinfo6/716ab45214ee2d8838050bc7e092a772cabfe35cc4887821897b36c885b65c8f/9.4.7/lib/x86_64-linux-ghc-9.4.7/EscapeFromCurry-0.1.0.0-Cfn15gZur7rUfvETJf1KN"
 dynlibdir  = "/home/gabriel/Desktop/2023.2/PP/haskell/2023.2_G2_Funcional/.stack-work/install/x86_64-linux-tinfo6/716ab45214ee2d8838050bc7e092a772cabfe35cc4887821897b36c885b65c8f/9.4.7/lib/x86_64-linux-ghc-9.4.7"
 datadir    = "/home/gabriel/Desktop/2023.2/PP/haskell/2023.2_G2_Funcional/.stack-work/install/x86_64-linux-tinfo6/716ab45214ee2d8838050bc7e092a772cabfe35cc4887821897b36c885b65c8f/9.4.7/share/x86_64-linux-ghc-9.4.7/EscapeFromCurry-0.1.0.0"
 libexecdir = "/home/gabriel/Desktop/2023.2/PP/haskell/2023.2_G2_Funcional/.stack-work/install/x86_64-linux-tinfo6/716ab45214ee2d8838050bc7e092a772cabfe35cc4887821897b36c885b65c8f/9.4.7/libexec/x86_64-linux-ghc-9.4.7/EscapeFromCurry-0.1.0.0"

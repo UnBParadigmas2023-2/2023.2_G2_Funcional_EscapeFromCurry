@@ -1,20 +1,20 @@
 ? /home/gabriel/.stack/programs/x86_64-linux/ghc-tinfo6-9.4.7/lib/ghc-9.4.7/lib/x86_64-linux-ghc-9.4.7/rts-1.0.2/include/ghcversion.h
 : hash: ee548d48ca5c94d7c7fab127ec07be47b01afa24d6495358aa9ff6cfc8541c81
 ? /home/gabriel/Desktop/2023.2/PP/haskell/2023.2_G2_Funcional/.stack-work/dist/x86_64-linux-tinfo6/Cabal-3.8.1.0/build/EscapeFromCurry-exe/autogen/Paths_EscapeFromCurry.hs
-: hash: a9e760156433960dea2a08420c1ddb2e929ea2cc7722f6daed82d4af4d20ac11
-? /home/gabriel/Desktop/2023.2/PP/haskell/2023.2_G2_Funcional/.stack-work/dist/x86_64-linux-tinfo6/Cabal-3.8.1.0/build/EscapeFromCurry-exe/autogen/cabal_macros.h
-: hash: 389f6d68be8c3ed6d30a89b0f68158a36282047bf51fecd1a5b66504dce9d8f0
+: hash: 50afcc00f9f10820fda5a0cc4e66bc866db033b34dd5ef6184a614c6fd5331f4
 /home/gabriel/Desktop/2023.2/PP/haskell/2023.2_G2_Funcional/CHANGELOG.md:
   hash: 17a34df0340195276975b6fe17b225f7224861545faeaae28447149540640a05
 /home/gabriel/Desktop/2023.2/PP/haskell/2023.2_G2_Funcional/EscapeFromCurry.cabal:
-  hash: 25a5d22e31fd813d272f478fada3116c6137ff9e2e8da5aa56eb67aaa891900b
+  hash: 9e6ccb582d8a1a3293a8d214130013da5dee6beb468880d0a1f7476debf594f3
 /home/gabriel/Desktop/2023.2/PP/haskell/2023.2_G2_Funcional/README.md:
   hash: 6365d90fb11f8ea7ea2c19e994539932206227d2b21576dfe9359727420e49b4
 /home/gabriel/Desktop/2023.2/PP/haskell/2023.2_G2_Funcional/app/Game/Player.hs:
-  hash: f212e9280fe27930f11693e3b0464bbc3a810900630c59b00946e8b61d3e6965
+  hash: 21e2696730bf9b7022d19308c2aeec78954b0721cee8057f95f9a7435505ead1
 /home/gabriel/Desktop/2023.2/PP/haskell/2023.2_G2_Funcional/app/Main.hs:
   hash: 99557f1eedde626af9e9bf5bbd05b8acd7d299c8bdc975410c9344bdae4c3df6
+/home/gabriel/Desktop/2023.2/PP/haskell/2023.2_G2_Funcional/app/Types.hs:
+  hash: 335e5300d219d3d95738b3f1e5366195e4d6a036b591ab44d5f917a3fc2956de
 /home/gabriel/Desktop/2023.2/PP/haskell/2023.2_G2_Funcional/package.yaml:
-  hash: d783c3e5d7d410ede013bc1b265fbf4fe06cc62f7417293f936950c338de0088
+  hash: 47236b62bd01955583d66816bb7b33bf8aa2d553e5af7e87ad2c5fafd17c1498
 /usr/include/stdc-predef.h:
   hash: cb08cd5d4cc059a90833ac48a284d25016e8d56ded8ad4cd98d8ac59cc5053f3

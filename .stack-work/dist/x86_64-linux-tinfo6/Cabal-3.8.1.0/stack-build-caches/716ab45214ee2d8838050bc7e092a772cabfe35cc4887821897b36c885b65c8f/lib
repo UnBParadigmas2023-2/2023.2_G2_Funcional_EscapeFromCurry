@@ -1,0 +1,18 @@
+? /home/gabriel/.stack/programs/x86_64-linux/ghc-tinfo6-9.4.7/lib/ghc-9.4.7/lib/x86_64-linux-ghc-9.4.7/rts-1.0.2/include/ghcversion.h
+: hash: ee548d48ca5c94d7c7fab127ec07be47b01afa24d6495358aa9ff6cfc8541c81
+? /home/gabriel/Desktop/2023.2/PP/haskell/2023.2_G2_Funcional/.stack-work/dist/x86_64-linux-tinfo6/Cabal-3.8.1.0/build/autogen/Paths_EscapeFromCurry.hs
+: hash: 39d34f50904e3d35d499bdbfeacbe9a591dfc74933460e4d85917a52010c8042
+? /home/gabriel/Desktop/2023.2/PP/haskell/2023.2_G2_Funcional/.stack-work/dist/x86_64-linux-tinfo6/Cabal-3.8.1.0/build/autogen/cabal_macros.h
+: hash: 0415306b6bf76c79aac9123357ae546ca6fbf0c58b35d1925a9a95b35f5ddb45
+/home/gabriel/Desktop/2023.2/PP/haskell/2023.2_G2_Funcional/CHANGELOG.md:
+  hash: 17a34df0340195276975b6fe17b225f7224861545faeaae28447149540640a05
+/home/gabriel/Desktop/2023.2/PP/haskell/2023.2_G2_Funcional/EscapeFromCurry.cabal:
+  hash: 25a5d22e31fd813d272f478fada3116c6137ff9e2e8da5aa56eb67aaa891900b
+/home/gabriel/Desktop/2023.2/PP/haskell/2023.2_G2_Funcional/README.md:
+  hash: 6365d90fb11f8ea7ea2c19e994539932206227d2b21576dfe9359727420e49b4
+/home/gabriel/Desktop/2023.2/PP/haskell/2023.2_G2_Funcional/package.yaml:
+  hash: d783c3e5d7d410ede013bc1b265fbf4fe06cc62f7417293f936950c338de0088
+/home/gabriel/Desktop/2023.2/PP/haskell/2023.2_G2_Funcional/src/Lib.hs:
+  hash: 98c0f605b03fd178450b6cdba9683928f0b62ab3845c3ed96192c5705cae5953
+/usr/include/stdc-predef.h:
+  hash: cb08cd5d4cc059a90833ac48a284d25016e8d56ded8ad4cd98d8ac59cc5053f3

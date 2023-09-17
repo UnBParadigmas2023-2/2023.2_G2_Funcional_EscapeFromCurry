@@ -38,6 +38,7 @@ library
 executable EscapeFromCurry-exe
   main-is: Main.hs
   other-modules:
+      Game.Player
       Paths_EscapeFromCurry
   hs-source-dirs:
       app

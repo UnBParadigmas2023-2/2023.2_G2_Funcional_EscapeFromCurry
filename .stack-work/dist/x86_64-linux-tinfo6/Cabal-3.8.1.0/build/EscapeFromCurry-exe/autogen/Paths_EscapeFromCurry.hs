@@ -42,12 +42,12 @@ getBinDir, getLibDir, getDynLibDir, getDataDir, getLibexecDir, getSysconfDir :: 
 
 
 bindir, libdir, dynlibdir, datadir, libexecdir, sysconfdir :: FilePath
-bindir     = "/home/gabriel/unb/paradigmas/2023.2_G2_Funcional/.stack-work/install/x86_64-linux-tinfo6/a639b0aee50b53b5c878a466db7199c1497ee0fd52cd5a33042c262f34e19de0/9.4.7/bin"
-libdir     = "/home/gabriel/unb/paradigmas/2023.2_G2_Funcional/.stack-work/install/x86_64-linux-tinfo6/a639b0aee50b53b5c878a466db7199c1497ee0fd52cd5a33042c262f34e19de0/9.4.7/lib/x86_64-linux-ghc-9.4.7/EscapeFromCurry-0.1.0.0-FGEXIaJbq2tCTstV5OXBfg-EscapeFromCurry-exe"
-dynlibdir  = "/home/gabriel/unb/paradigmas/2023.2_G2_Funcional/.stack-work/install/x86_64-linux-tinfo6/a639b0aee50b53b5c878a466db7199c1497ee0fd52cd5a33042c262f34e19de0/9.4.7/lib/x86_64-linux-ghc-9.4.7"
-datadir    = "/home/gabriel/unb/paradigmas/2023.2_G2_Funcional/.stack-work/install/x86_64-linux-tinfo6/a639b0aee50b53b5c878a466db7199c1497ee0fd52cd5a33042c262f34e19de0/9.4.7/share/x86_64-linux-ghc-9.4.7/EscapeFromCurry-0.1.0.0"
-libexecdir = "/home/gabriel/unb/paradigmas/2023.2_G2_Funcional/.stack-work/install/x86_64-linux-tinfo6/a639b0aee50b53b5c878a466db7199c1497ee0fd52cd5a33042c262f34e19de0/9.4.7/libexec/x86_64-linux-ghc-9.4.7/EscapeFromCurry-0.1.0.0"
-sysconfdir = "/home/gabriel/unb/paradigmas/2023.2_G2_Funcional/.stack-work/install/x86_64-linux-tinfo6/a639b0aee50b53b5c878a466db7199c1497ee0fd52cd5a33042c262f34e19de0/9.4.7/etc"
+bindir     = "/home/gabriel/Desktop/2023.2/PP/haskell/2023.2_G2_Funcional/.stack-work/install/x86_64-linux-tinfo6/716ab45214ee2d8838050bc7e092a772cabfe35cc4887821897b36c885b65c8f/9.4.7/bin"
+libdir     = "/home/gabriel/Desktop/2023.2/PP/haskell/2023.2_G2_Funcional/.stack-work/install/x86_64-linux-tinfo6/716ab45214ee2d8838050bc7e092a772cabfe35cc4887821897b36c885b65c8f/9.4.7/lib/x86_64-linux-ghc-9.4.7/EscapeFromCurry-0.1.0.0-FGEXIaJbq2tCTstV5OXBfg-EscapeFromCurry-exe"
+dynlibdir  = "/home/gabriel/Desktop/2023.2/PP/haskell/2023.2_G2_Funcional/.stack-work/install/x86_64-linux-tinfo6/716ab45214ee2d8838050bc7e092a772cabfe35cc4887821897b36c885b65c8f/9.4.7/lib/x86_64-linux-ghc-9.4.7"
+datadir    = "/home/gabriel/Desktop/2023.2/PP/haskell/2023.2_G2_Funcional/.stack-work/install/x86_64-linux-tinfo6/716ab45214ee2d8838050bc7e092a772cabfe35cc4887821897b36c885b65c8f/9.4.7/share/x86_64-linux-ghc-9.4.7/EscapeFromCurry-0.1.0.0"
+libexecdir = "/home/gabriel/Desktop/2023.2/PP/haskell/2023.2_G2_Funcional/.stack-work/install/x86_64-linux-tinfo6/716ab45214ee2d8838050bc7e092a772cabfe35cc4887821897b36c885b65c8f/9.4.7/libexec/x86_64-linux-ghc-9.4.7/EscapeFromCurry-0.1.0.0"
+sysconfdir = "/home/gabriel/Desktop/2023.2/PP/haskell/2023.2_G2_Funcional/.stack-work/install/x86_64-linux-tinfo6/716ab45214ee2d8838050bc7e092a772cabfe35cc4887821897b36c885b65c8f/9.4.7/etc"
 
 getBinDir     = catchIO (getEnv "EscapeFromCurry_bindir")     (\_ -> return bindir)
 getLibDir     = catchIO (getEnv "EscapeFromCurry_libdir")     (\_ -> return libdir)

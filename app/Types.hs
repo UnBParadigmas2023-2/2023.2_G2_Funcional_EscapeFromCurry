@@ -6,8 +6,7 @@ data CellState
   | Empty
 
 type GameState = 
-  {
-  , gameMap :: map Position CellState
+  { gameMap :: map Position CellState
   , playerPosition :: Position
   , enemyPosition :: Position
   }

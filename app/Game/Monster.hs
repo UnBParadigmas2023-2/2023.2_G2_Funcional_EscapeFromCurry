@@ -1,4 +1,4 @@
-module Monster (nextPositionBfs) where 
+module Game.Monster (nextPositionBfs) where 
 import Types 
 
 nextPositionBfs:: GameState -> Position

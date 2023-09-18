@@ -10,16 +10,9 @@ import Graphics.Gloss.Interface.Pure.Game
       SpecialKey(KeyRight, KeyUp, KeyDown, KeyLeft) )
 import Types ( Position, CellState(..), GameMap, GameState(..), Direction(..) )
 
+-- recebe gamestate e direction do movimento, retorna um gamestate com a nova posição do player (validada)
 updatePlayer :: GameState -> Direction -> GameState
-updatePlayer gameState direction =
-    let (curX, curY) = playerPosition gameState
-        newPosition =
-            case direction of
-                DirUp    -> (curX, curY + 1)
-                DirDown  -> (curX, curY - 1)
-                DirLeft  -> (curX - 1, curY)
-                DirRight -> (curX + 1, curY)
-    in gameState { playerPosition = newPosition }
+updatePlayer gameState direction = undefined
 
 inputPlayer :: Event -> GameState -> GameState
 inputPlayer (EventKey (SpecialKey KeyUp) Down _ _) gameState = updatePlayer gameState DirUp
@@ -37,7 +30,6 @@ initialPlayerPosition gameMap = do
 getRandomPosition :: [Position] -> Position
 getRandomPosition positions = do
     randomIndex <- randomRIO (0, length positions - 1)
-    printStrLn
     return $ positions !! randomIndex
 
 findEmptyCells :: GameMap -> [Position]
@@ -54,4 +46,4 @@ isWallCell (x, y) = undefined
 
 -- criar função de desenho do player na tela
 
--- criar função que valida a próxima posição
+-- completar funções que validam a próxima posição

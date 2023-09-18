@@ -33,12 +33,14 @@ library
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints
   build-depends:
       base >=4.7 && <5
+    , containers
     , gloss
   default-language: Haskell2010
 
 executable EscapeFromCurry-exe
   main-is: Main.hs
   other-modules:
+      Types
       Paths_EscapeFromCurry
   hs-source-dirs:
       app
@@ -46,6 +48,7 @@ executable EscapeFromCurry-exe
   build-depends:
       EscapeFromCurry
     , base >=4.7 && <5
+    , containers
     , gloss
   default-language: Haskell2010
 
@@ -60,5 +63,6 @@ test-suite EscapeFromCurry-test
   build-depends:
       EscapeFromCurry
     , base >=4.7 && <5
+    , containers
     , gloss
   default-language: Haskell2010

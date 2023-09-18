@@ -1,7 +1,5 @@
--- criar módulo para o player
 module Player ( initialPlayerPosition, inputPlayer ) where
 
--- importar dependências
 import Graphics.Gloss (Point)
 import System.Random
 import qualified Data.Map.Strict as Map

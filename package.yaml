@@ -23,6 +23,11 @@ dependencies:
 - base >= 4.7 && < 5
 - gloss
 - containers
+- random
+- containers
+- mtl
+- MonadRandom
+- random-shuffle
 
 ghc-options:
 - -Wall

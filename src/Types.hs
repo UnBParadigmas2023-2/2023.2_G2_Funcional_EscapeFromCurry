@@ -1,16 +1,48 @@
-module Types (CellState, GameState, Position) where 
+{-# LANGUAGE LambdaCase #-}
 
-import qualified Data.Map as Map
+module Types (CellState (..), GameState, GameMap, Position, Direction, directions, offsets, neighborsFor) where
 
-data CellState 
-  = Wall 
-  | Goal 
+import qualified Data.Map.Strict as Map
+
+data CellState
+  = Wall
+  | Goal
   | Empty
+  deriving (Eq)
+
+data Direction
+  = DirUp
+  | DirRight
+  | DirDown
+  | DirLeft
+  deriving (Eq, Ord, Show)
+
+directions :: [Direction]
+directions = [DirUp, DirRight, DirDown, DirLeft]
+
+directionOffset :: Direction -> Position
+directionOffset = \case
+  DirUp -> (0, -1)
+  DirRight -> (1, 0)
+  DirDown -> (0, 1)
+  DirLeft -> (-1, 0)
+
+offsets :: [Position]
+offsets = map directionOffset directions
+
+neighborsFor :: Position -> [Position]
+neighborsFor p = map (addTuples p . directionOffset) directions
+  where
+    addTuples (x, y) (x', y') = (x + x', y + y')
 
 type Position = (Int, Int)
 
+type GameMap = Map.Map Position CellState
+
 data GameState = GameState
-  { gameMap :: Map.Map Position CellState
+  { gameMap :: GameMap
+  , width :: Int
+  , height :: Int
   , playerPosition :: Position
   , enemyPosition :: Position
   }

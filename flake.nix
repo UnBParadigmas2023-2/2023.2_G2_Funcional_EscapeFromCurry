@@ -12,14 +12,17 @@
       projectDevTools = [
         hPkgs.ghc
         hPkgs.ghcid
-        hPkgs.ormolu
+        hPkgs.fourmolu
         hPkgs.hlint
         hPkgs.hoogle
         hPkgs.haskell-language-server
         hPkgs.implicit-hie
         hPkgs.retrie
+        hPkgs.gloss
         stack-wrapped
         pkgs.zlib
+        pkgs.libGL
+        pkgs.libGLU
       ];
 
       stack-wrapped = pkgs.symlinkJoin {

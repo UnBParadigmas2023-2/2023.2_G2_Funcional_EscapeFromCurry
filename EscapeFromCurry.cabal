@@ -40,7 +40,6 @@ library
 executable EscapeFromCurry-exe
   main-is: Main.hs
   other-modules:
-      Game.Monster
       Types
       Paths_EscapeFromCurry
   hs-source-dirs:

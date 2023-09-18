@@ -26,6 +26,8 @@ source-repository head
 library
   exposed-modules:
       Lib
+      Monster
+      Types
   other-modules:
       Paths_EscapeFromCurry
   hs-source-dirs:
@@ -40,7 +42,6 @@ library
 executable EscapeFromCurry-exe
   main-is: Main.hs
   other-modules:
-      Types
       Paths_EscapeFromCurry
   hs-source-dirs:
       app

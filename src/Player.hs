@@ -54,5 +54,6 @@ isMonsterCell (x, y) = undefined
 isWallCell :: Position -> Bool
 isWallCell (x, y) = undefined
 
--- criar função que desenha o player na tela, recebendo GameState
---  e chamando as funções de desenho
+-- criar função de desenho do player na tela
+
+-- criar função que valida a próxima posição

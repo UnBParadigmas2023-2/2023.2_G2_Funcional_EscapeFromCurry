@@ -4,7 +4,6 @@ import Types
 
 import qualified Data.Map as Map
 import qualified Data.Queue as Queue
-import Data.Map (empty)
 
 
 bfs :: GameState -> Queue []  ->  Map Position Position 

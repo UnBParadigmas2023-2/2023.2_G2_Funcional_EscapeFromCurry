@@ -2,5 +2,8 @@ module Main (main) where
 
 import Lib
 
+update :: GameState -> GameState
+update gameState = 
+
 main :: IO ()
-main = someFunc
+main = initialPlayerState updateGame

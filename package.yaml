@@ -24,6 +24,9 @@ dependencies:
 - gloss
 - containers
 - random
+- mtl
+- MonadRandom
+- random-shuffle
 
 ghc-options:
 - -Wall

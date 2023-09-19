@@ -1,4 +1,4 @@
-module Monster (bfs) where
+module Monster (nextPositionBFS) where
 
 import Types ( GameState (..), Position, CellState (..), GameMap, neighborsFor )
 
@@ -27,7 +27,7 @@ nextPosition father currentPosition monsterPosition playerPosition =
     Just fatherPosition
       | fatherPosition == monsterPosition -> currentPosition
       | otherwise -> nextPosition father fatherPosition monsterPosition playerPosition
-    Nothing -> currentPosition 
+    Nothing -> monsterPosition 
 
 nextPositionBFS :: GameState -> Position
 nextPositionBFS gameState =

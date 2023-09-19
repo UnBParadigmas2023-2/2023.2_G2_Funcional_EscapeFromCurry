@@ -17,3 +17,7 @@ checkResult False =
       Translate (-100) (-100) $ Scale 0.3 0.3 $ Color blue $ Text "Pressione 'P' para jogar novamente.",
       Translate (-100) (-150) $ Scale 0.3 0.3 $ Color yellow $ Text "Pressione 'M' para voltar ao menu."
     ]
+
+atualizarJogo :: Event -> GameState
+atualizarJogo (EventKey (Char 'p') Down _ _) _ = -- Função para reiniciar jogo
+atualizarJogo (EventKey (Char 'm') Down _ _) _ = -- Função para retornar ao menu

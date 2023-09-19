@@ -27,6 +27,7 @@ library
   exposed-modules:
       Generator
       Lib
+      Message
       Monster
       Types
   other-modules:

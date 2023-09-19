@@ -1,9 +1,10 @@
 module Message where
 
 import Graphics.Gloss
+import Graphics.Gloss.Interface.IO.Game
+import Types
 
-checkResult:: Bool -> IO ()
-
+checkResult:: Bool -> Picture
 checkResult True =
   Pictures
     [ Translate (-200) 0 $ Scale 0.5 0.5 $ Color green $ Text "Parabéns! Você venceu o jogo!",
@@ -19,6 +20,6 @@ checkResult False =
     ]
 
 redirectPlayer :: Event -> GameState -> GameState
-redirectPlayer (EventKey (Char 'p') Down _ _) _ = -- Função para reiniciar jogo
-redirectPlayer (EventKey (Char 'm') Down _ _) _ = -- Função para retornar ao menu
+redirectPlayer (EventKey (Char 'p') Down _ _) _ = undefined
+redirectPlayer (EventKey (Char 'm') Down _ _) _ = undefined
 redirectPlayer _ gameState = gameState

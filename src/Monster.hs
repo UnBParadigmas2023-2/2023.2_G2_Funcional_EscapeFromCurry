@@ -1,6 +1,6 @@
-module Monster () where
+module Monster (bfs) where
 
-import Types ( GameState, Position, CellState (..), GameMap, neighborsFor )
+import Types ( GameState (..), Position, CellState (..), GameMap, neighborsFor )
 
 import qualified Data.Map as Map
 
@@ -16,8 +16,8 @@ validPosition gameMap father currentPosition =
 bfs :: GameState ->  [Position] ->  Map.Map Position Position -> Map.Map Position Position
 bfs  _ [] father = father
 bfs gameState (v:xs) father = 
-    let validNeighbors = filter (validPosition gameMap father v) neighborsFor v
-        newFather = Map.fromList [(n, v) | n <- validPosition]
+    let validNeighbors = filter (validPosition (gameMap gameState) father) $ neighborsFor v
+        newFather = Map.fromList [(n, v) | n <- validNeighbors]
         newQueue = xs ++ validNeighbors
     in bfs gameState newQueue (Map.union father newFather) 
   
@@ -32,5 +32,5 @@ nextPosition father currentPosition monsterPosition playerPosition =
 nextPositionBFS :: GameState -> Position
 nextPositionBFS gameState =
   let defaultFather = Map.singleton (enemyPosition gameState) (666, 666)
-      bfsResult = bfs gameState [gameState.enemyPosition] defaultFather
-  in nextPosition bfsResult gameState.playerPosition gameState.enemyPosition gameState.playerPosition
+      bfsResult = bfs gameState [enemyPosition gameState] defaultFather
+  in nextPosition bfsResult (playerPosition gameState) (enemyPosition gameState) (playerPosition gameState)

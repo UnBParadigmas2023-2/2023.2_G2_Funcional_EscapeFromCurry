@@ -29,6 +29,7 @@ library
       Lib
       Message
       Monster
+      Time
       Types
   other-modules:
       Paths_EscapeFromCurry

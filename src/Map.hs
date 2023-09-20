@@ -1,11 +1,19 @@
-
+module Map (displayGameMap) where
 
 import qualified Data.Map.Strict as M
 
-import Types (CellState (..), GameMap, Position, GameState (..), neighborsFor, offsets)
-import qualified System.Random as R
-import Generator (mkMaze, genMaze, showMaze)
+import Types (CellState (..), GameState (..))
+
 import Graphics.Gloss
+    ( black,
+      Color,
+      green,
+      white,
+      color,
+      pictures,
+      rectangleSolid,
+      translate,
+      Picture )
 
 
 -- Definir aqui o Mapa Obrigatorio
@@ -25,9 +33,16 @@ cellStateToPicture Wall = color wallColor $ rectangleSolid cellSize cellSize
 cellStateToPicture Empty = color emptyColor $ rectangleSolid cellSize cellSize
 cellStateToPicture Goal = color goalColor $ rectangleSolid cellSize cellSize
 
+wallColor :: Color
 wallColor = black
+
+emptyColor :: Color
 emptyColor = white
+
+goalColor :: Color
 goalColor = green
+
+cellSize :: Float
 cellSize = 10
 
 displayGameMap :: GameState -> Picture
@@ -39,8 +54,7 @@ displayGameMap gameState =
                          | x <- [0 .. width gameState - 1],
                            y <- [0 .. height gameState - 1]]
 
-
-main :: IO ()
-main = do
-    let gameState = a  -- Assuming 'a' is your GameState initialization
-    display (InWindow "Game Map" (1980, 1020) (0, 0)) white (displayGameMap gameState)
+--main :: IO ()
+--main = do
+--    let gameState = a  -- Assuming 'a' is your GameState initialization
+--    display (InWindow "Game Map" (1980, 1020) (0, 0)) white (displayGameMap gameState)

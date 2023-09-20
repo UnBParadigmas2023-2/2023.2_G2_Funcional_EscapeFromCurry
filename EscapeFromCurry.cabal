@@ -27,6 +27,7 @@ library
   exposed-modules:
       Generator
       Lib
+      Map
       Message
       Monster
       Time

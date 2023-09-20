@@ -1,6 +1,6 @@
 {-# LANGUAGE LambdaCase #-}
 
-module Types (CellState (..), GameState (..), GameMap, Position, Direction, directions, offsets, neighborsFor) where
+module Types (CellState (..), GameState(..), GameMap, Position, Direction(..), directions, offsets, neighborsFor) where
 
 import qualified Data.Map.Strict as Map
 

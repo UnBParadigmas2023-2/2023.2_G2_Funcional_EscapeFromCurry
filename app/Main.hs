@@ -1,26 +1,27 @@
-module Main (main) where
+module Main where
 
-import Generator
 import Graphics.Gloss
-import Map
-import qualified System.Random as R
-import Types
+import Graphics.Gloss.Interface.IO.Game
+import Message  -- Importe o módulo Message
+import Time
 
-a :: GameState
-a =
-  let mwidth = 40
-      mheight = 40
-      maze = mkMaze mwidth mheight
-      fullMaze = genMaze maze (0, 0) (R.mkStdGen 100)
-      gs =
-        GameState
-          { gameMap = fullMaze,
-            width = mwidth,
-            height = mheight,
-            playerPosition = (0, 0),
-            enemyPosition = (0, 0)
-          }
-   in gs
+update :: GameState -> GameState
+update gameState = 
 
 main :: IO ()
-main = display (InWindow "Game Map" (19980, 1020) (0, 0)) white (displayGameMap a)
+main = do
+
+  timerState <- startTimer
+
+  endTime <- stopTimer timerState
+  let gameResult = False  -- Defina o resultado do jogo (True para vitória, False para derrota)
+      messagePicture = checkResult gameResult $ show endTime  -- Chame checkResult com o resultado
+
+  play
+    (InWindow "Meu Jogo" (800, 600) (10, 10)) -- Configuração da janela
+    black                                      -- Cor de fundo da janela
+    60                                         -- Frames por segundo
+    messagePicture                             -- Imagem a ser exibida (mensagem de vitória)
+    (\_ -> messagePicture)                     -- Função de renderização (exibe a mesma mensagem)
+    (\_ _ -> messagePicture)                   -- Função de tratamento de eventos (exibe a mesma mensagem)
+    (\_ gameState -> gameState)                -- Função de atualização do jogo

@@ -9,6 +9,7 @@ import Graphics.Gloss.Interface.Pure.Game
       KeyState(Down),
       SpecialKey(KeyRight, KeyUp, KeyDown, KeyLeft) )
 import Types ( Position, CellState(..), GameMap, GameState(..), Direction(..) )
+import Control.Monad.Cont
 
 -- recebe gamestate e direction do movimento, retorna um gamestate com a nova posição do player (validada)
 updatePlayer :: GameState -> Direction -> GameState
@@ -35,13 +36,13 @@ inputPlayer (EventKey (SpecialKey KeyLeft) Down _ _) gameState = updatePlayer ga
 inputPlayer (EventKey (SpecialKey KeyRight) Down _ _) gameState = updatePlayer gameState DirRight
 inputPlayer _ gameState = gameState 
 
-initialPlayerPosition :: GameMap -> Position
+initialPlayerPosition :: (MonadIO m) => GameMap -> m Position
 initialPlayerPosition gameMap = do
     let emptyCellPositions = findEmptyCells gameMap
     playerPosition <- getRandomPosition emptyCellPositions
     return $ playerPosition
 
-getRandomPosition :: [Position] -> Position
+getRandomPosition :: (MonadIO m) => [Position] -> m Position
 getRandomPosition positions = do
     randomIndex <- randomRIO (0, length positions - 1)
     return $ positions !! randomIndex

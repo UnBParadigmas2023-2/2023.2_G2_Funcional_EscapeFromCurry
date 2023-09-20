@@ -4,9 +4,11 @@ import Graphics.Gloss
 import Graphics.Gloss.Interface.IO.Game
 import Message  -- Importe o módulo Message
 import Time
+import Types
+import Map
 
 update :: GameState -> GameState
-update gameState = 
+update gameState = undefined
 
 main :: IO ()
 main = do

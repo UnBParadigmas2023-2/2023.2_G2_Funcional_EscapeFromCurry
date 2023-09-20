@@ -28,6 +28,7 @@ dependencies:
 - mtl
 - MonadRandom
 - random-shuffle
+- time
 
 ghc-options:
 - -Wall

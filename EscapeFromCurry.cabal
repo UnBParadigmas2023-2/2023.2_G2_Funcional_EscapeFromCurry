@@ -27,9 +27,10 @@ library
   exposed-modules:
       Generator
       Lib
+      Map
+      Message
       Monster
       Player
-      Message
       Time
       Types
   other-modules:

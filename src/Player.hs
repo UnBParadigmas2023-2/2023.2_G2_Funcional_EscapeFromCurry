@@ -12,7 +12,21 @@ import Types ( Position, CellState(..), GameMap, GameState(..), Direction(..) )
 
 -- recebe gamestate e direction do movimento, retorna um gamestate com a nova posição do player (validada)
 updatePlayer :: GameState -> Direction -> GameState
-updatePlayer gameState direction = undefined
+updatePlayer gameState direction =
+    let currentPosition = playerPosition gameState
+        newPosition = case direction of
+            DirUp -> (fst currentPosition - 1, snd currentPosition)
+            DirDown -> (fst currentPosition + 1, snd currentPosition)
+            DirLeft -> (fst currentPosition, snd currentPosition - 1)
+            DirRight -> (fst currentPosition, snd currentPosition + 1)
+    in
+    if isWallCell (gameMap gameState) newPosition
+        then gameState  -- Não é possível se mover para uma parede
+    else if isMonsterCell gameState newPosition
+        then gameState
+     else if isGoalCell (gameMap gameState) newPosition
+        then gameState
+    else gameState { playerPosition = newPosition }
 
 inputPlayer :: Event -> GameState -> GameState
 inputPlayer (EventKey (SpecialKey KeyUp) Down _ _) gameState = updatePlayer gameState DirUp
@@ -35,15 +49,21 @@ getRandomPosition positions = do
 findEmptyCells :: GameMap -> [Position]
 findEmptyCells gameMap = [pos | (pos, cellState) <- Map.toList gameMap, cellState == Empty]
 
-isGoalCell :: Position -> Bool
-isGoalCell (x, y) = undefined
+isGoalCell :: GameMap -> Position -> Bool
+isGoalCell gameMap (x, y) =
+    case Map.lookup (x, y) gameMap of
+        Just cellState -> cellState == Goal
+        Nothing -> False 
 
-isMonsterCell :: Position -> Bool
-isMonsterCell (x, y) = undefined
+isMonsterCell :: GameState -> Position -> Bool
+isMonsterCell gameState position =
+    position == enemyPosition gameState
 
-isWallCell :: Position -> Bool
-isWallCell (x, y) = undefined
-
+isWallCell :: GameMap -> Position -> Bool
+isWallCell gameMap (x, y) =
+    case Map.lookup (x, y) gameMap of
+        Just cellState -> cellState == Wall
+        Nothing -> False  -- Se a posição não estiver no mapa, não é uma parede
 -- criar função de desenho do player na tela
 
 -- completar funções que validam a próxima posição

@@ -27,8 +27,9 @@ library
   exposed-modules:
       Generator
       Lib
-      Message
       Monster
+      Player
+      Message
       Time
       Types
   other-modules:

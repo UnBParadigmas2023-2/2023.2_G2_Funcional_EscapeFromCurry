@@ -5,6 +5,9 @@ import Graphics.Gloss.Interface.IO.Game
 import Message  -- Importe o módulo Message
 import Time
 
+update :: GameState -> GameState
+update gameState = 
+
 main :: IO ()
 main = do
 

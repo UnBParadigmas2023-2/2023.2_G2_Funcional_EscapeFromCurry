@@ -1,1 +1,4 @@
+.direnv
+.envrc
 .stack-work
+.stack-work/stack.sqlite3

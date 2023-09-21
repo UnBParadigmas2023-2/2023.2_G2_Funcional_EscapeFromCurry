@@ -25,9 +25,9 @@ source-repository head
 
 library
   exposed-modules:
+      Game
       Generator
       Map
-      Message
       Monster
       Player
       Time

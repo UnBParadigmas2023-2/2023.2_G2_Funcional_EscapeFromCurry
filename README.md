@@ -86,8 +86,9 @@ Quaisquer outras informações sobre o projeto podem ser descritas aqui. Não es
 (iV) Trabalhos Futuros.
 
 ## Fontes
-Referencie, adequadamente, as referências utilizadas.
-Indique ainda sobre fontes de leitura complementares.
+
+- Inspirado em: https://github.com/UnBParadigmas2022-1/2022.1_G3_Funcional_ProjetoPacman;
+- Baseado em: https://github.com/GameJamFGA-UnB/Escape-From-Dijkstra
 
 
 

@@ -63,7 +63,7 @@ handleInput evt gs = case playingState gs of
 updateGame :: Float -> GameState -> GameState
 updateGame dt gs =
   let newGs = updatePlayer gs
-      newEnemyPosition = nextPositionBFS newGs
+      newEnemyPosition = delayMonsterMove gs
       newTime = totalTime newGs + dt
       newState = if newEnemyPosition == playerPosition gs then Lost else playingState gs
    in case playingState newGs of
@@ -71,6 +71,12 @@ updateGame dt gs =
           newGs {enemyPosition = newEnemyPosition, totalTime = newTime, playingState = newState}
         _ -> newGs
 
+delayMonsterMove :: GameState -> Position
+delayMonsterMove gs = newEnemyPosition
+  where 
+    enemyPos = enemyPosition gs
+    time = totalTime gs
+    newEnemyPosition = if ((mod totalTime 5) == 0) then nextPositionBFS gs else enemyPos
 
 checkResult:: PlayingState -> String -> Picture
 checkResult Won time =

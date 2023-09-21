@@ -1,7 +1,7 @@
-module Message where
+module Message (checkResult, redirectPlayer) where
 
 import Graphics.Gloss
-import Graphics.Gloss.Interface.IO.Game
+import Graphics.Gloss.Interface.IO.Game (Event(..), KeyState(..), Key(..))
 import Types
 
 checkResult:: Bool -> String -> Picture

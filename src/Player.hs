@@ -1,7 +1,5 @@
 module Player ( inputPlayer, updatePlayer ) where
 
-import Graphics.Gloss (Point)
-import System.Random
 import qualified Data.Map.Strict as Map
 import Graphics.Gloss.Interface.Pure.Game
     ( Event(EventKey),
@@ -9,7 +7,6 @@ import Graphics.Gloss.Interface.Pure.Game
       KeyState(Down, Up),
       SpecialKey(KeyRight, KeyUp, KeyDown, KeyLeft) )
 import Types ( Position, CellState(..), GameMap, GameState(..), Direction(..), PlayingState(..) )
-import Control.Monad.Cont
 
 -- recebe gamestate e direction do movimento, retorna um gamestate com a nova posição do player (validada)
 updatePlayer :: GameState -> GameState
@@ -47,8 +44,8 @@ inputPlayer (EventKey (SpecialKey KeyRight) Up _ _) gameState
 inputPlayer _ gameState = gameState
 
 isGoalCell :: GameMap -> Position -> Bool
-isGoalCell gameMap (x, y) =
-    case Map.lookup (x, y) gameMap of
+isGoalCell gameMap' (x, y) =
+    case Map.lookup (x, y) gameMap' of
         Just cellState -> cellState == Goal
         Nothing -> False 
 
@@ -57,7 +54,7 @@ isMonsterCell gameState position =
     position == enemyPosition gameState
 
 isWallCell :: GameMap -> Position -> Bool
-isWallCell gameMap (x, y) =
-    case Map.lookup (x, y) gameMap of
+isWallCell gameMap' (x, y) =
+    case Map.lookup (x, y) gameMap' of
         Just cellState -> cellState == Wall
         Nothing -> False  -- Se a posição não estiver no mapa, não é uma parede

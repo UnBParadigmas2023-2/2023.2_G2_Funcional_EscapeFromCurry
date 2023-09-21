@@ -1,9 +1,7 @@
-module Main where
+module Main (main) where
 
 import Graphics.Gloss
-import Graphics.Gloss.Interface.IO.Game
 import Message  -- Importe o módulo Message
-import Time
 import Types
 import Map
 import qualified System.Random as R
@@ -27,13 +25,9 @@ a = let
     }
   in gs
 
-update :: GameState -> GameState
-update gameState = undefined
-
 main :: IO ()
 main = do
   let gs = a
-  timerState <- startTimer
 
   play
     (InWindow "Meu Jogo" (800, 800) (0, 0)) -- Configuração da janela

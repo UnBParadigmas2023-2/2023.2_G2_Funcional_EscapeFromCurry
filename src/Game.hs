@@ -78,13 +78,6 @@ updateGame dt gs =
           }
         _ -> newGs
 
-delayMonsterMove :: GameState -> Position
-delayMonsterMove gs = newEnemyPosition
-  where 
-    enemyPos = enemyPosition gs
-    time = totalTime gs
-    newEnemyPosition = if ((mod totalTime 5) == 0) then nextPositionBFS gs else enemyPos
-
 checkResult:: PlayingState -> String -> Picture
 checkResult Won time =
   Pictures

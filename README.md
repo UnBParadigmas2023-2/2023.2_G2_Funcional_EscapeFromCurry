@@ -22,14 +22,14 @@
 [//]: # (Use referências, links, que permitam conhecer um pouco mais sobre o projeto.)
 [//]: # (Capriche nessa seção, pois ela é a primeira a ser lida pelos interessados no projeto.)
 
-&emsp;&emsp;Neste projeto, propomos a criação de um jogo de labirinto usando linguagem funcional para a disciplina de Paradigmas de Software. O jogo apresenta um jogador (caracter) e um monstro, onde o objetivo é alcançar a saída antes de ser capturado pelo monstro. Adotando o paradigma funcional, focaremos em funções puras para a movimentação do jogador e estratégias do monstro, além de utilizar o algoritmo de busca em largura (BFS) para a geração do labirinto. A estrutura bidimensional do labirinto, representada por um grafo, será manipulada de forma imutável, promovendo legibilidade, facilidade de testes e prevenção de efeitos colaterais. Ao aplicar esses conceitos, buscamos destacar a eficácia e a elegância da programação funcional na construção de jogos, consolidando o aprendizado em paradigmas de software.
+&emsp;&emsp;Neste projeto, propomos a criação de um jogo de labirinto usando linguagem funcional para a disciplina de Paradigmas de Software. O jogo apresenta um jogador (caracter) e um monstro, onde o objetivo é alcançar a saída antes de ser capturado pelo monstro. Adotando o paradigma funcional, focaremos em funções puras para a movimentação do jogador e estratégias do monstro, além de utilizar o algoritmo de busca em largura (BFS) para encontrar a posição que o monstro deve se mover. A estrutura bidimensional do labirinto, representada por um grafo, será manipulada de forma imutável, promovendo legibilidade, facilidade de testes e prevenção de efeitos colaterais. Ao aplicar esses conceitos, buscamos destacar a eficácia e a elegância da programação funcional na construção de jogos, consolidando o aprendizado em paradigmas de software.
 
 ## Screenshots
 Adicione 2 ou mais screenshots do projeto em termos de interface e/ou funcionamento.
 
 ## Instalação 
-**Linguagens**: xxxxxx<br>
-**Tecnologias**: xxxxxx<br>
+**Linguagens**: Haskell<br>
+**Tecnologias**: GHCI, Cabal e Stack <br>
 Descreva os pré-requisitos para rodar o seu projeto e os comandos necessários.
 Insira um manual ou um script para auxiliar ainda mais.
 Gifs animados e outras ilustrações são bem-vindos!
@@ -51,6 +51,8 @@ git clone https://github.com/UnBParadigmas2023-2/2023.2_G2_Funcional
 ```bash
 stack build && stack exec EscapeFromCurry-exe
 ```
+
+Após rodar os comandos de build e execução do projeto, arbirá uma janela com o labirinto, para mexer o jogador, que é o ícone verda, basta movimentar pelas setas do teclado. O objetivo do jogo é alcançar o Goal, que está representado por uma terceira cor. Divirta-se! 
 
 ## Vídeo
 Adicione 1 ou mais vídeos com a execução do projeto.

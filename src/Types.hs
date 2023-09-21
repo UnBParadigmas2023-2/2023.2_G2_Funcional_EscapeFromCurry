@@ -15,6 +15,7 @@ data Direction
   | DirRight
   | DirDown
   | DirLeft
+  | DirNone
   deriving (Eq, Ord, Show)
 
 directions :: [Direction]
@@ -52,4 +53,5 @@ data GameState = GameState
   , playerPosition :: Position
   , enemyPosition :: Position
   , playingState :: PlayingState
+  , playerDirection :: Direction
   }

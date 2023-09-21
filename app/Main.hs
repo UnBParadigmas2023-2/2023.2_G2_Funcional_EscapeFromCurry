@@ -23,7 +23,7 @@ a = let
     withGoal = M.fromList [(goal, Goal)] `M.union` fullMaze
     gs = GameState { 
       gameMap = withGoal, width = mwidth, height = mheight, playerPosition = playerPos, enemyPosition = (10, 0),
-      playingState = Playing 
+      playingState = Playing, playerDirection = DirNone
     }
   in gs
 

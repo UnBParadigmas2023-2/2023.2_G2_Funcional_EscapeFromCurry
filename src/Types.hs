@@ -28,6 +28,7 @@ directionOffset = \case
   DirRight -> (1, 0)
   DirDown -> (0, 1)
   DirLeft -> (-1, 0)
+  DirNone -> (0, 0)
 
 offsets :: [Position]
 offsets = map directionOffset directions
@@ -57,4 +58,5 @@ data GameState = GameState
   , playerDirection :: Direction
   , totalTime :: Float
   , seed :: StdGen
+  , frameCount :: Integer
   }

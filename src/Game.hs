@@ -12,7 +12,7 @@ import qualified System.Random as R
 import qualified Data.Map.Strict as M
 
 fps :: Int
-fps = 5
+fps = 10
 
 windowWidth :: Int
 windowWidth = 800
@@ -21,21 +21,21 @@ windowHeight :: Int
 windowHeight = 800
 
 initializeGame :: R.StdGen -> GameState
-initializeGame s = 
-  let 
+initializeGame s =
+  let
     cs = round cellSize
     mazeWidth = windowWidth `div` cs
     mazeHeight = windowHeight `div` cs
-    maze = mkMaze mazeWidth mazeHeight 
+    maze = mkMaze mazeWidth mazeHeight
     playerDir = DirNone
     (fullMaze, s'') = genMaze maze (0, 0) s
     (playerPos, s''') = initialPosition fullMaze s''
     (enemyPos, s'''') = initialPosition fullMaze s'''
     (goalPos, s''''') = initialPosition fullMaze s''''
     mazeWithGoal = M.fromList [(goalPos, Goal)] `M.union` fullMaze
-    
-  in 
-    GameState 
+
+  in
+    GameState
       { gameMap = mazeWithGoal
       , width = mazeWidth
       , height = mazeHeight
@@ -45,8 +45,9 @@ initializeGame s =
       , playingState = Playing
       , totalTime = 0
       , seed = s'''''
+      , frameCount = 0
       }
-   
+
 resetGame :: GameState -> GameState
 resetGame gs = initializeGame (seed gs)
 
@@ -63,12 +64,18 @@ handleInput evt gs = case playingState gs of
 updateGame :: Float -> GameState -> GameState
 updateGame dt gs =
   let newGs = updatePlayer gs
-      newEnemyPosition = delayMonsterMove gs
       newTime = totalTime newGs + dt
-      newState = if newEnemyPosition == playerPosition gs then Lost else playingState gs
+      newFrameCount = frameCount newGs + 1
+      newEnemyPosition = if newFrameCount `mod` 5 == 0 then nextPositionBFS newGs else enemyPosition newGs
+      newState = if newEnemyPosition == playerPosition newGs then Lost else playingState newGs
    in case playingState newGs of
         Playing ->
-          newGs {enemyPosition = newEnemyPosition, totalTime = newTime, playingState = newState}
+          newGs 
+          { enemyPosition = newEnemyPosition
+          , totalTime = newTime
+          , playingState = newState
+          , frameCount = newFrameCount
+          }
         _ -> newGs
 
 delayMonsterMove :: GameState -> Position
@@ -81,18 +88,18 @@ delayMonsterMove gs = newEnemyPosition
 checkResult:: PlayingState -> String -> Picture
 checkResult Won time =
   Pictures
-    [ Translate (-510) 0 $ Scale 0.5 1 $ Color green $ Text "Parabens! Voce venceu o jogo!",
-      Translate (-350) (-100) $ Scale 0.3 0.3 $ Color blue $ Text "Pressione 'P' para jogar novamente.",
-      Translate (-350) (-150) $ Scale 0.3 0.3 $ Color yellow $ Text "Pressione 'M' para voltar ao menu.",
-      Translate (-350) (-200) $ Scale 0.2 0.2 $ Color green $ Text $ "Tempo: " ++ time ++ "s"
+    [ Translate (-510) 0 $ Scale 0.5 1 $ Color black $ Text "Parabens! Voce venceu o jogo!",
+      Translate (-350) (-100) $ Scale 0.3 0.3 $ Color black $ Text "Pressione 'P' para jogar novamente.",
+      Translate (-350) (-150) $ Scale 0.3 0.3 $ Color black $ Text "Pressione 'M' para voltar ao menu.",
+      Translate (-350) (-200) $ Scale 0.2 0.2 $ Color black $ Text $ "Tempo: " ++ time ++ "s"
     ]
-    
+
 checkResult Lost time =
   Pictures
-    [ Translate (-200) 0 $ Scale 0.5 0.5 $ Color red $ Text "GAME OVER!",
-      Translate (-350) (-100) $ Scale 0.3 0.3 $ Color blue $ Text "Pressione 'P' para jogar novamente.",
-      Translate (-350) (-150) $ Scale 0.3 0.3 $ Color yellow $ Text "Pressione 'M' para voltar ao menu.",
-      Translate (-350) (-200) $ Scale 0.2 0.2 $ Color green $ Text $ "Tempo: " ++ time ++ "s"
+    [ Translate (-200) 0 $ Scale 0.5 0.5 $ Color black $ Text "GAME OVER!",
+      Translate (-350) (-100) $ Scale 0.3 0.3 $ Color black $ Text "Pressione 'P' para jogar novamente.",
+      Translate (-350) (-150) $ Scale 0.3 0.3 $ Color black $ Text "Pressione 'M' para voltar ao menu.",
+      Translate (-350) (-200) $ Scale 0.2 0.2 $ Color black $ Text $ "Tempo: " ++ time ++ "s"
     ]
 
 -- this should never happen.

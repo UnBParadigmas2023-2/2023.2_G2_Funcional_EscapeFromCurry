@@ -93,12 +93,13 @@ Insira aqui as Contribuições e Fragilidades durante o processo
 Insira aqui as Trabalhos Futuros durante o processo
 
 ## Fontes
+- Inspirado em: https://github.com/UnBParadigmas2022-1/2022.1_G3_Funcional_ProjetoPacman;
+- Baseado em: https://github.com/GameJamFGA-UnB/Escape-From-Dijkstra;
+
 > Downloads.  Disponível em: <https://www.haskell.org/downloads/>. Acesso em: 21 set. 2023.
 
 > CONTRIBUTORS, S. The Haskell Tool Stack.  Disponível em: <https://docs.haskellstack.org/en/stable/>. Acesso em: 21 set. 2023.
 
 > gloss: Painless 2D vector graphics, animations and simulations..  Disponível em: <https://hackage.haskell.org/package/gloss>. Acesso em: 21 set. 2023.
-
-
 
 

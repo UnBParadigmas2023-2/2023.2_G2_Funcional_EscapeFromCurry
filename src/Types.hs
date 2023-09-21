@@ -1,6 +1,6 @@
 {-# LANGUAGE LambdaCase #-}
 
-module Types (CellState (..), GameState(..), GameMap, Position, Direction(..), directions, offsets, neighborsFor) where
+module Types (CellState (..), GameState(..), GameMap, Position, Direction(..), PlayingState(..), directions, offsets, neighborsFor) where
 
 import qualified Data.Map.Strict as Map
 
@@ -39,10 +39,17 @@ type Position = (Int, Int)
 
 type GameMap = Map.Map Position CellState
 
+data PlayingState
+  = Playing
+  | Lost
+  | Won
+  deriving (Eq)
+
 data GameState = GameState
   { gameMap :: GameMap
   , width :: Int
   , height :: Int
   , playerPosition :: Position
   , enemyPosition :: Position
+  , playingState :: PlayingState
   }

@@ -1,4 +1,4 @@
-module Player ( initialPlayerPosition, inputPlayer ) where
+module Player ( inputPlayer ) where
 
 import Graphics.Gloss (Point)
 import System.Random
@@ -8,7 +8,7 @@ import Graphics.Gloss.Interface.Pure.Game
       Key(SpecialKey),
       KeyState(Down),
       SpecialKey(KeyRight, KeyUp, KeyDown, KeyLeft) )
-import Types ( Position, CellState(..), GameMap, GameState(..), Direction(..) )
+import Types ( Position, CellState(..), GameMap, GameState(..), Direction(..), PlayingState(..) )
 import Control.Monad.Cont
 
 -- recebe gamestate e direction do movimento, retorna um gamestate com a nova posição do player (validada)
@@ -16,17 +16,17 @@ updatePlayer :: GameState -> Direction -> GameState
 updatePlayer gameState direction =
     let currentPosition = playerPosition gameState
         newPosition = case direction of
-            DirUp -> (fst currentPosition - 1, snd currentPosition)
-            DirDown -> (fst currentPosition + 1, snd currentPosition)
-            DirLeft -> (fst currentPosition, snd currentPosition - 1)
-            DirRight -> (fst currentPosition, snd currentPosition + 1)
+            DirUp -> (fst currentPosition, snd currentPosition + 1)
+            DirDown -> (fst currentPosition, snd currentPosition - 1)
+            DirLeft -> (fst currentPosition - 1, snd currentPosition)
+            DirRight -> (fst currentPosition + 1, snd currentPosition )
     in
     if isWallCell (gameMap gameState) newPosition
         then gameState  -- Não é possível se mover para uma parede
     else if isMonsterCell gameState newPosition
-        then gameState
+        then gameState { playingState = Lost }
      else if isGoalCell (gameMap gameState) newPosition
-        then gameState
+        then gameState { playingState = Won }
     else gameState { playerPosition = newPosition }
 
 inputPlayer :: Event -> GameState -> GameState
@@ -35,20 +35,6 @@ inputPlayer (EventKey (SpecialKey KeyDown) Down _ _) gameState = updatePlayer ga
 inputPlayer (EventKey (SpecialKey KeyLeft) Down _ _) gameState = updatePlayer gameState DirLeft
 inputPlayer (EventKey (SpecialKey KeyRight) Down _ _) gameState = updatePlayer gameState DirRight
 inputPlayer _ gameState = gameState 
-
-initialPlayerPosition :: (MonadIO m) => GameMap -> m Position
-initialPlayerPosition gameMap = do
-    let emptyCellPositions = findEmptyCells gameMap
-    playerPosition <- getRandomPosition emptyCellPositions
-    return $ playerPosition
-
-getRandomPosition :: (MonadIO m) => [Position] -> m Position
-getRandomPosition positions = do
-    randomIndex <- randomRIO (0, length positions - 1)
-    return $ positions !! randomIndex
-
-findEmptyCells :: GameMap -> [Position]
-findEmptyCells gameMap = [pos | (pos, cellState) <- Map.toList gameMap, cellState == Empty]
 
 isGoalCell :: GameMap -> Position -> Bool
 isGoalCell gameMap (x, y) =

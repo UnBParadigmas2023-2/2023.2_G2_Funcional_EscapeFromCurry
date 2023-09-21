@@ -22,6 +22,6 @@ checkResult False time =
     ]
 
 redirectPlayer :: Event -> GameState -> GameState
-redirectPlayer (EventKey (Char 'p') Down _ _) _ = undefined -- Incluir função de destino
-redirectPlayer (EventKey (Char 'm') Down _ _) _ = undefined -- Incluir função de destino
+redirectPlayer (EventKey (Char 'p') Down _ _) gs = gs { playingState = Playing }
+redirectPlayer (EventKey (Char 'm') Down _ _) gs = gs { playingState = Playing }-- Incluir função de destino
 redirectPlayer _ gameState = gameState

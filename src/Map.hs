@@ -14,9 +14,8 @@ import Graphics.Gloss
     white,
   )
 import Types (CellState (..), GameState (..), Position, GameMap, PlayingState(..))
-import Monster
+import Monster (nextPositionBFS)
 import qualified Data.Map.Strict as Map
-import Control.Monad.IO.Class (MonadIO)
 import qualified System.Random as R
 
 cellStateToPicture :: CellState -> Picture
@@ -56,19 +55,17 @@ displayGameMap gameState =
 
 
 initialPosition :: GameMap -> R.StdGen -> Position
-initialPosition gameMap s = getRandomPosition (findEmptyCells gameMap) s
+initialPosition gameMap' = getRandomPosition (findEmptyCells gameMap')
 
 getRandomPosition :: [Position] -> R.StdGen -> Position
 getRandomPosition positions s = positions !! randomIndex
   where (randomIndex, _) = R.randomR (0, length positions - 1) s
 
 findEmptyCells :: GameMap -> [Position]
-findEmptyCells gameMap = [pos | (pos, cellState) <- Map.toList gameMap, cellState == Empty]
+findEmptyCells gameMap' = [pos | (pos, cellState) <- Map.toList gameMap', cellState == Empty]
 
 updateGame :: Float -> GameState -> GameState
-updateGame dt cur = cur { enemyPosition = enemy, playingState = newState }
+updateGame _dt cur = cur { enemyPosition = enemy, playingState = newState }
   where
-    enemy = case (round dt) `mod` 10000 == 0 of
-      True -> nextPositionBFS cur
-      False -> enemyPosition cur
+    enemy = nextPositionBFS cur
     newState = if enemy == playerPosition cur then Lost else playingState cur

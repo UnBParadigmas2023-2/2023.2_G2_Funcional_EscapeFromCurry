@@ -1,9 +1,7 @@
 module Main (main) where
 
 import Graphics.Gloss
-import Graphics.Gloss.Interface.IO.Game
 import Message  -- Importe o módulo Message
-import Time
 import Types
 import Map
 import qualified System.Random as R

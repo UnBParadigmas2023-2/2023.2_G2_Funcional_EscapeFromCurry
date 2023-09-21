@@ -68,26 +68,36 @@ TEMPO: +/- 15min
 Apresente, brevemente, como cada membro do grupo contribuiu para o projeto.
 |Nome do Membro | Contribuição | Significância da Contribuição para o Projeto (Excelente/Boa/Regular/Ruim/Nula) |
 | -- | -- | -- |
-| Adne Moretti Moreira | Programação dos Fatos da Base de Conhecimento Lógica | Boa |
-| Caio Vitor Carneiro de Oliveira | Programação dos Fatos da Base de Conhecimento Lógica | Boa |
-| Cícero Barrozo Fernandes Filho | Programação dos Fatos da Base de Conhecimento Lógica | Boa |
-| Deivid Alves de Carvalho | Programação dos Fatos da Base de Conhecimento Lógica | Boa |
-| Gabriel Costa de Oliveira | Programação dos Fatos da Base de Conhecimento Lógica | Boa |
-| Gabriel Moretti de Souza | Programação dos Fatos da Base de Conhecimento Lógica | Boa |
-| Guilherme Puida Moreira | Programação dos Fatos da Base de Conhecimento Lógica | Boa |
-| João Henrique Marques Calzavara | Programação dos Fatos da Base de Conhecimento Lógica | Boa |
-| Lucas Lopes Rocha | Programação dos Fatos da Base de Conhecimento Lógica | Boa |
+| Adne Moretti Moreira | Módulo do monstro e auxílio na integração entre os módulos. | Excelente |
+| Caio Vitor Carneiro de Oliveira | Módulo de criação de parede no Gloss e ajuda na integração final. | Excelente |
+| Cícero Barrozo Fernandes Filho | Funções de validação da movimentação do player e ajuda nas integrações finais. | Excelente |
+| Deivid Alves de Carvalho | --- | Excelente |
+| Gabriel Costa de Oliveira | --- | Excelente |
+| Gabriel Moretti de Souza | Início do Types.hs, movimentação do player e integrações finais. | Excelente |
+| Guilherme Puida Moreira | --- | Excelente |
+| João Henrique Marques Calzavara | Módulos Time e Message, integrações finais e README. | Excelente |
+| Lucas Lopes Rocha | Módulos Time e Message, integrações finais e README. | Excelente |
 
 ## Outros 
-Quaisquer outras informações sobre o projeto podem ser descritas aqui. Não esqueça, entretanto, de informar sobre:
-(i) Lições Aprendidas;
-(ii) Percepções;
-(iii) Contribuições e Fragilidades, e
-(iV) Trabalhos Futuros.
+
+### Lições Aprendidas
+Insira aqui as Lições Aprendidas durante o processo
+
+### Percepções
+Insira aqui as Percepções durante o processo
+
+### Contribuições e Fragilidades
+Insira aqui as Contribuições e Fragilidades durante o processo
+
+### Trabalhos Futuros
+Insira aqui as Trabalhos Futuros durante o processo
 
 ## Fontes
-Referencie, adequadamente, as referências utilizadas.
-Indique ainda sobre fontes de leitura complementares.
+> Downloads.  Disponível em: <https://www.haskell.org/downloads/>. Acesso em: 21 set. 2023.
+
+> CONTRIBUTORS, S. The Haskell Tool Stack.  Disponível em: <https://docs.haskellstack.org/en/stable/>. Acesso em: 21 set. 2023.
+
+> gloss: Painless 2D vector graphics, animations and simulations..  Disponível em: <https://hackage.haskell.org/package/gloss>. Acesso em: 21 set. 2023.
 
 
 

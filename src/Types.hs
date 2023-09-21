@@ -3,6 +3,7 @@
 module Types (CellState (..), GameState (..), GameMap, Position, Direction (..), PlayingState (..), directions, offsets, neighborsFor) where
 
 import qualified Data.Map.Strict as Map
+import System.Random (StdGen)
 
 data CellState
   = Wall
@@ -54,4 +55,6 @@ data GameState = GameState
   , enemyPosition :: Position
   , playingState :: PlayingState
   , playerDirection :: Direction
+  , totalTime :: Float
+  , seed :: StdGen
   }

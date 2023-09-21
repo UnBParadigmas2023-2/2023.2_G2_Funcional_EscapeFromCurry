@@ -52,7 +52,7 @@ git clone https://github.com/UnBParadigmas2023-2/2023.2_G2_Funcional
 stack build && stack exec EscapeFromCurry-exe
 ```
 
-Após rodar os comandos de build e execução do projeto, arbirá uma janela com o labirinto, para mexer o jogador, que é o ícone verda, basta movimentar pelas setas do teclado. O objetivo do jogo é alcançar o Goal, que está representado por uma terceira cor. Divirta-se! 
+Após rodar os comandos de build e execução do projeto, abriá uma janela com o labirinto, para mexer o jogador, que é o ícone verde, basta movimentar pelas setas do teclado. O objetivo do jogo é alcançar o Goal, que está representado por uma terceira cor. Divirta-se! 
 
 ## Vídeo
 Adicione 1 ou mais vídeos com a execução do projeto.

@@ -4,7 +4,8 @@ module Generator (mkMaze, genMaze, showMaze) where
 
 import Control.Applicative (liftA2)
 import Control.Monad (foldM)
-import Control.Monad.Random (MonadRandom, evalRand)
+import Control.Monad.Random (MonadRandom, runRand)
+import Data.Functor ((<&>))
 import Data.List (nub)
 import qualified Data.Map.Strict as M
 import System.Random (StdGen)
@@ -12,9 +13,9 @@ import System.Random.Shuffle (shuffleM)
 import Types (CellState (..), GameMap, Position, neighborsFor, offsets)
 
 mkMaze :: Int -> Int -> GameMap
-mkMaze w h = M.fromList . map (,Wall) $ liftA2 (,) [0 .. w] [0 .. h]
+mkMaze w h = M.fromList . map (,Wall) $ liftA2 (,) [0 .. w - 1] [0 .. h - 1]
 
-genMaze :: GameMap -> Position -> StdGen -> GameMap
+genMaze :: GameMap -> Position -> StdGen -> (GameMap, StdGen)
 genMaze m i s =
   let gen :: (MonadRandom m) => GameMap -> Position -> m GameMap
       gen m' cur' = do
@@ -43,7 +44,22 @@ genMaze m i s =
         let chosen = M.fromList . map (,Empty) $ take (length options `div` 2) options
 
         return $ M.union chosen m'
-   in evalRand (gen m i >>= removeWalls) s
+
+      fixBorders :: GameMap -> GameMap
+      fixBorders m' =
+        let (mx, my) = fst $ M.findMax m'
+
+            leftWall = (0,) <$> [0 .. my - 1]
+            topWall = (,0) <$> [0 .. mx - 1]
+            rightWall = (mx,) <$> [0 .. my - 1]
+            bottomWall = (,my) <$> [0 .. mx - 1]
+
+            walls = (,Wall) <$> concat [leftWall, topWall, rightWall, bottomWall]
+
+            m'' :: GameMap
+            m'' = M.fromList walls
+         in m'' `M.union` m'
+   in runRand ((gen m i >>= removeWalls) <&> fixBorders) s
 
 showMaze :: Int -> Int -> GameMap -> String
 showMaze w h gm = s 0 0

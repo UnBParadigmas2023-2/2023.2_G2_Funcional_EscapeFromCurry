@@ -1,10 +1,11 @@
-module Map (initialPosition, displayGameMap, updateGame) where
+module Map (initialPosition, displayGameMap, cellSize) where
 
 import qualified Data.Map.Strict as M
 import Graphics.Gloss
   ( Color,
     Picture,
     black,
+    blue,
     color,
     green,
     red,
@@ -31,7 +32,7 @@ emptyColor :: Color
 emptyColor = white
 
 goalColor :: Color
-goalColor = green
+goalColor = blue
 
 cellSize :: Float
 cellSize = 10
@@ -54,20 +55,12 @@ displayGameMap gameState =
           y <- [0 .. height gameState - 1]
       ]
 
-
-initialPosition :: GameMap -> R.StdGen -> Position
+initialPosition :: GameMap -> R.StdGen -> (Position, R.StdGen)
 initialPosition gameMap' = getRandomPosition (findEmptyCells gameMap')
 
-getRandomPosition :: [Position] -> R.StdGen -> Position
-getRandomPosition positions s = positions !! randomIndex
-  where (randomIndex, _) = R.randomR (0, length positions - 1) s
+getRandomPosition :: [Position] -> R.StdGen -> (Position, R.StdGen)
+getRandomPosition positions s = (positions !! randomIndex, s')
+  where (randomIndex, s') = R.randomR (0, length positions - 1) s
 
 findEmptyCells :: GameMap -> [Position]
 findEmptyCells gameMap' = [pos | (pos, cellState) <- Map.toList gameMap', cellState == Empty]
-
-updateGame :: Float -> GameState -> GameState
-updateGame _dt cur = newPlayer { enemyPosition = enemy, playingState = newState }
-  where
-    newPlayer = updatePlayer cur
-    enemy = nextPositionBFS cur
-    newState = if enemy == playerPosition cur then Lost else playingState cur

@@ -79,7 +79,7 @@ Apresente, brevemente, como cada membro do grupo contribuiu para o projeto.
 | Deivid Alves de Carvalho | --- | Excelente |
 | Gabriel Costa de Oliveira | --- | Excelente |
 | Gabriel Moretti de Souza | Início do Types.hs, movimentação do player e integrações finais. | Excelente |
-| Guilherme Puida Moreira | --- | Excelente |
+| Guilherme Puida Moreira | Geração de mapa, implementação do modo difícil, integração entre módulos e ajuda para outros integrantes do grupo. | Excelente |
 | João Henrique Marques Calzavara | Módulos Time e Message, integrações finais e README. | Excelente |
 | Lucas Lopes Rocha | Módulos Time e Message, integrações finais e README. | Excelente |
 

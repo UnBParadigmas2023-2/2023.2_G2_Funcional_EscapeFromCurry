@@ -37,7 +37,7 @@ cellSize = 15
 
 displayGameMap :: GameState -> Picture
 displayGameMap gameState =
-  translate (-400.0) (-400.0) . pictures $
+  translate (-390.0) (-390.0) . pictures $
     [ translate (fromIntegral x * cellSize) (fromIntegral y * cellSize) (cellStateToPicture cellState)
       | ((x, y), cellState) <- gameMapWithCoords, shouldDraw (x, y)
     ] ++ [ translate (fromIntegral px * cellSize) (fromIntegral py * cellSize) (color blue $ rectangleSolid cellSize cellSize)]

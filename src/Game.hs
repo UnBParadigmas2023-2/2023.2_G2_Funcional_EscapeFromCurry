@@ -116,7 +116,7 @@ checkResult Won time =
       Translate (-400) (-120) $ Scale 0.3 0.3 $ thickText 2.3 black "Pressione 'Esc' para sair.",
       Translate (-400) (-180) $ Scale 0.2 0.2 $ thickText 2.3 black $ "Tempo: " ++ time ++ "s"
     ]
-    
+
 checkResult Lost time =
   Pictures
     [ Translate (-200) 100 $ Scale 0.43 0.43 $ thickText 2.3 black "FIM DE JOGO!",

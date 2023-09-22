@@ -44,6 +44,7 @@ data PlayingState
   = Playing
   | Lost
   | Won
+  | Menu
   deriving (Eq)
 
 data GameState = GameState

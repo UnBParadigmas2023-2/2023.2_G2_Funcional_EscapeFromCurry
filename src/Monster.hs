@@ -1,7 +1,6 @@
 module Monster (nextPositionBFS) where
 
 import qualified Data.Map as Map
-import qualified Data.Sequence as Seq
 import Types (CellState (..), GameMap, GameState (..), Position, neighborsFor)
 
 validPosition :: GameMap -> Map.Map Position Position -> Position -> Bool
@@ -34,26 +33,3 @@ nextPositionBFS str fin gameState =
   let defaultFather = Map.singleton (str) (666, 666)
       bfsResult = bfs gameState [str] defaultFather
    in nextPosition bfsResult (fin) (str) (fin)
-
-data SearchNode = SearchNode
-  { position :: Position
-  , parent :: Maybe SearchNode
-  } deriving (Eq, Show)
-
-bfs' :: GameState -> Position -> Position -> Maybe [Position]
-bfs' gs start goal = bfs'' (Seq.singleton (SearchNode start Nothing)) []
-  where
-    bfs'' :: Seq.Seq SearchNode -> [SearchNode] -> Maybe [Position]
-    bfs'' queue visited =
-      case Seq.viewl queue of
-        Seq.EmptyL -> Nothing
-        (x Seq.:< xs) ->
-          if position x == goal
-            then Just $ position <$> reverse (x : visited)
-            else bfs'' (foldl (enqueueAdjacent x) xs (neighborsFor $ position x)) (x : visited)
-
-    enqueueAdjacent :: SearchNode -> Seq.Seq SearchNode -> Position -> Seq.Seq SearchNode
-    enqueueAdjacent parent' queue neighbor =
-      if Just Empty == neighbor `Map.lookup` gameMap gs && notElem neighbor (position <$> queue)
-        then queue Seq.|> SearchNode neighbor (Just parent')
-        else queue

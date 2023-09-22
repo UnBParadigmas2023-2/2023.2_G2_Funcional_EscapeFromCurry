@@ -45,7 +45,7 @@ initializeGame s =
       , playerDirection = playerDir
       , enemyPosition = enemyPos
       , goalPosition = goalPos
-      , playingState = Playing
+      , playingState = Menu
       , totalTime = 0
       , seed = s'''''
       , frameCount = 0
@@ -64,7 +64,9 @@ verifyInitialGame = do
     else return initialGame
 
 resetGame :: GameState -> GameState
-resetGame gs = initializeGame (seed gs)
+resetGame gs = 
+  let init' = initializeGame (seed gs) 
+    in init' {playingState = Playing}
 
 drawGame :: GameState -> Picture
 drawGame gs = case playingState gs of
@@ -100,21 +102,26 @@ checkResult Won time =
   Pictures
     [ Translate (-510) 0 $ Scale 0.5 1 $ Color black $ Text "Parabens! Voce venceu o jogo!",
       Translate (-350) (-100) $ Scale 0.3 0.3 $ Color black $ Text "Pressione 'P' para jogar novamente.",
-      Translate (-350) (-150) $ Scale 0.3 0.3 $ Color black $ Text "Pressione 'M' para voltar ao menu.",
+      Translate (-350) (-150) $ Scale 0.3 0.3 $ Color black $ Text "Pressione 'Esc' para sair.",
       Translate (-350) (-200) $ Scale 0.2 0.2 $ Color black $ Text $ "Tempo: " ++ time ++ "s"
     ]
-
+    
 checkResult Lost time =
   Pictures
     [ Translate (-200) 0 $ Scale 0.5 0.5 $ Color black $ Text "GAME OVER!",
       Translate (-350) (-100) $ Scale 0.3 0.3 $ Color black $ Text "Pressione 'P' para jogar novamente.",
-      Translate (-350) (-150) $ Scale 0.3 0.3 $ Color black $ Text "Pressione 'M' para voltar ao menu.",
+      Translate (-350) (-150) $ Scale 0.3 0.3 $ Color black $ Text "Pressione 'Esc' para sair.",
       Translate (-350) (-200) $ Scale 0.2 0.2 $ Color black $ Text $ "Tempo: " ++ time ++ "s"
+    ]
+
+checkResult Menu _ =
+  Pictures
+    [ Translate (-200) 0 $ Scale 0.3 0.3 $ Color black $ Text "ESCAPE FROM CURRY!",
+      Translate (-350) (-100) $ Scale 0.3 0.3 $ Color black $ Text "Pressione 'P' para iniciar o jogo."
     ]
 
 checkResult _ _ = undefined
 
 redirectPlayer :: Event -> GameState -> GameState
 redirectPlayer (EventKey (Char 'p') Down _ _) gs = resetGame gs
-redirectPlayer (EventKey (Char 'm') Down _ _) gs = resetGame gs
 redirectPlayer _ gameState = gameState

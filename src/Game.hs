@@ -51,21 +51,20 @@ initializeGame s gm =
       , gameMode = gm
       }
 
-verifyInitialGame :: IO GameState
-verifyInitialGame = do
-  currentTime <- getPOSIXTime
-  let initialGame = initializeGame (R.mkStdGen $ round (currentTime * 1000)) Easy
+verifyInitialGame :: Int -> GameMode -> GameState
+verifyInitialGame s gm = do
+  let initialGame = initializeGame (R.mkStdGen s) gm
   let playerPos = playerPosition initialGame
   let enemyPos = enemyPosition initialGame
   let goalPos = goalPosition initialGame
   if (nextPositionBFS enemyPos playerPos initialGame == enemyPos)
     || (nextPositionBFS playerPos goalPos initialGame == playerPos)
-    then verifyInitialGame
-    else return initialGame
+    then verifyInitialGame (s + 1) gm
+    else initialGame
 
 resetGame :: GameState -> GameMode -> GameState
 resetGame gs gm =
-  let init' = initializeGame (seed gs) gm
+  let init' = verifyInitialGame ((* frameCount gs) . round $ totalTime gs) gm
     in init' { playingState = Playing }
 
 drawGame :: GameState -> Picture

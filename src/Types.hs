@@ -69,6 +69,6 @@ data GameState = GameState
   , playerDirection :: Direction
   , totalTime :: Float
   , seed :: StdGen
-  , frameCount :: Integer
+  , frameCount :: Int
   , gameMode :: GameMode
   }

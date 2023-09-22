@@ -85,7 +85,7 @@ updateGame dt gs =
       newFrameCount = frameCount newGs + 1
       playerPos = playerPosition newGs
       enemyPos = enemyPosition newGs
-      newEnemyPosition = if newFrameCount `mod` 3 == 0 then nextPositionBFS enemyPos playerPos newGs else enemyPosition newGs
+      newEnemyPosition = if newFrameCount `mod` 2 == 0 then nextPositionBFS enemyPos playerPos newGs else enemyPosition newGs
       newState = if newEnemyPosition == playerPosition newGs then Lost else playingState newGs
    in case playingState newGs of
         Playing ->

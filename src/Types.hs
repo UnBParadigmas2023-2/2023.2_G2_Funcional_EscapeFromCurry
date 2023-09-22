@@ -1,6 +1,6 @@
 {-# LANGUAGE LambdaCase #-}
 
-module Types (CellState (..), GameState (..), GameMap, Position, Direction (..), PlayingState (..), directions, offsets, neighborsFor) where
+module Types (CellState (..), GameState (..), GameMap, Position, Direction (..), PlayingState (..), GameMode (..), directions, offsets, neighborsFor) where
 
 import qualified Data.Map.Strict as Map
 import System.Random (StdGen)
@@ -49,6 +49,15 @@ data PlayingState
   | Menu
   deriving (Eq)
 
+data GameMode
+  = Easy
+  | Hard
+  deriving (Eq)
+
+instance Show GameMode where
+  show Easy = "FACIL"
+  show Hard = "DIFICIL"
+
 data GameState = GameState
   { gameMap :: GameMap
   , width :: Int
@@ -61,4 +70,5 @@ data GameState = GameState
   , totalTime :: Float
   , seed :: StdGen
   , frameCount :: Integer
+  , gameMode :: GameMode
   }

@@ -1,7 +1,6 @@
 module Time (startTimer, stopTimer, getElapsedSeconds) where
 
 import Data.Time
-import Control.Concurrent
 
 data TimerState = Running UTCTime | Stopped Integer
 

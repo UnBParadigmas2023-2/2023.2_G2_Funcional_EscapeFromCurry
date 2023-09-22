@@ -14,7 +14,7 @@ import Graphics.Gloss
     translate,
     white,
   )
-import Types (CellState (..), GameState (..), Position, GameMap)
+import Types (CellState (..), GameState (..), Position, GameMap, GameMode(..))
 import qualified Data.Map.Strict as Map
 import qualified System.Random as R
 
@@ -39,13 +39,18 @@ displayGameMap :: GameState -> Picture
 displayGameMap gameState =
   translate (-400.0) (-400.0) . pictures $
     [ translate (fromIntegral x * cellSize) (fromIntegral y * cellSize) (cellStateToPicture cellState)
-      | ((x, y), cellState) <- gameMapWithCoords
+      | ((x, y), cellState) <- gameMapWithCoords, shouldDraw (x, y)
     ] ++ [ translate (fromIntegral px * cellSize) (fromIntegral py * cellSize) (color blue $ rectangleSolid cellSize cellSize)]
       ++ [ translate (fromIntegral ex * cellSize) (fromIntegral ey * cellSize) (color red $ rectangleSolid cellSize cellSize)]
   where
     playerPos = playerPosition gameState
     (px, py) = playerPos
     (ex, ey) = enemyPosition gameState
+
+    distance (x, y) = abs (px - x) + abs (py - y)
+    shouldDraw pos = case gameMode gameState of
+      Easy -> True
+      Hard -> distance pos <= 8
 
     gameMapWithCoords =
       [ ((x, y), M.findWithDefault Wall (x, y) (gameMap gameState))

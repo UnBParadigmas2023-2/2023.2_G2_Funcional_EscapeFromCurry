@@ -8,7 +8,6 @@ import Graphics.Gloss.Interface.Pure.Game
       SpecialKey(KeyRight, KeyUp, KeyDown, KeyLeft) )
 import Types ( Position, CellState(..), GameMap, GameState(..), Direction(..), PlayingState(..) )
 
--- recebe gamestate e direction do movimento, retorna um gamestate com a nova posição do player (validada)
 updatePlayer :: GameState -> GameState
 updatePlayer gameState =
     let pDirection = playerDirection gameState
@@ -21,7 +20,7 @@ updatePlayer gameState =
             DirNone -> (fst currentPosition, snd currentPosition)
     in
     if isWallCell (gameMap gameState) newPosition
-        then gameState  -- Não é possível se mover para uma parede
+        then gameState
     else if isMonsterCell gameState newPosition
         then gameState { playingState = Lost }
      else if isGoalCell (gameMap gameState) newPosition
@@ -57,4 +56,4 @@ isWallCell :: GameMap -> Position -> Bool
 isWallCell gameMap' (x, y) =
     case Map.lookup (x, y) gameMap' of
         Just cellState -> cellState == Wall
-        Nothing -> False  -- Se a posição não estiver no mapa, não é uma parede
+        Nothing -> False

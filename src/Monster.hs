@@ -7,9 +7,9 @@ import Types (CellState (..), GameMap, GameState (..), Position, neighborsFor)
 validPosition :: GameMap -> Map.Map Position Position -> Position -> Bool
 validPosition gameMap father currentPosition =
     case Map.lookup currentPosition gameMap of
-        Just wall -> wall == Empty &&
+        Just wall -> (wall == Empty || wall == Goal) &&
             case Map.lookup currentPosition father of
-                Just _ -> False  
+                Just _ -> False
                 Nothing -> True  
         Nothing -> False 
 
@@ -29,21 +29,12 @@ nextPosition father currentPosition monsterPosition playerPosition =
       | otherwise -> nextPosition father fatherPosition monsterPosition playerPosition
     Nothing -> monsterPosition 
 
-nextPositionBFS :: GameState -> Position
-nextPositionBFS gameState =
-  let defaultFather = Map.singleton (enemyPosition gameState) (666, 666)
-      bfsResult = bfs gameState [enemyPosition gameState] defaultFather
-   in nextPosition bfsResult (playerPosition gameState) (enemyPosition gameState) (playerPosition gameState)
+nextPositionBFS :: Position -> Position -> GameState -> Position
+nextPositionBFS str fin gameState =
+  let defaultFather = Map.singleton (str) (666, 666)
+      bfsResult = bfs gameState [str] defaultFather
+   in nextPosition bfsResult (fin) (str) (fin)
 
-
--- Eu não testei se isso aqui realmente funciona, mas acho que vale a pena
--- dar uma explorada.
---
--- Em vez de retornar um mapa de cada `parent', o próprio nó de pesquisa
--- é responsável por saber qual seu pai.
---
--- No final da pesquisa, basta fazer o reverse da lista de nós de pesquisa e pegar só
--- as posições.
 data SearchNode = SearchNode
   { position :: Position
   , parent :: Maybe SearchNode

@@ -54,6 +54,7 @@ data GameState = GameState
   , height :: Int
   , playerPosition :: Position
   , enemyPosition :: Position
+  , goalPosition :: Position
   , playingState :: PlayingState
   , playerDirection :: Direction
   , totalTime :: Float

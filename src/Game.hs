@@ -1,4 +1,4 @@
-module Game (fps, drawGame, handleInput, updateGame, initializeGame, resetGame) where
+module Game (fps, drawGame, handleInput, updateGame, verifyInitialGame, resetGame) where
 
 import Graphics.Gloss
 import Graphics.Gloss.Interface.IO.Interact (Event)
@@ -8,6 +8,8 @@ import Monster
 import Player
 import Types
 import Generator
+import Data.Time.Clock.POSIX
+import Debug.Trace
 import qualified System.Random as R
 import qualified Data.Map.Strict as M
 
@@ -42,11 +44,24 @@ initializeGame s =
       , playerPosition = playerPos
       , playerDirection = playerDir
       , enemyPosition = enemyPos
+      , goalPosition = goalPos
       , playingState = Playing
       , totalTime = 0
       , seed = s'''''
       , frameCount = 0
       }
+
+verifyInitialGame :: IO GameState
+verifyInitialGame = do
+  currentTime <- getPOSIXTime
+  let initialGame = initializeGame . R.mkStdGen $ round (currentTime * 1000)
+  let playerPos = playerPosition initialGame
+  let enemyPos = enemyPosition initialGame
+  let goalPos = goalPosition initialGame
+  if (nextPositionBFS enemyPos playerPos initialGame == enemyPos)
+    || (nextPositionBFS playerPos goalPos initialGame == playerPos)
+    then verifyInitialGame
+    else return initialGame
 
 resetGame :: GameState -> GameState
 resetGame gs = initializeGame (seed gs)
@@ -66,7 +81,9 @@ updateGame dt gs =
   let newGs = updatePlayer gs
       newTime = totalTime newGs + dt
       newFrameCount = frameCount newGs + 1
-      newEnemyPosition = if newFrameCount `mod` 5 == 0 then nextPositionBFS newGs else enemyPosition newGs
+      playerPos = playerPosition newGs
+      enemyPos = enemyPosition newGs
+      newEnemyPosition = if newFrameCount `mod` 5 == 0 then nextPositionBFS enemyPos playerPos newGs else enemyPosition newGs
       newState = if newEnemyPosition == playerPosition newGs then Lost else playingState newGs
    in case playingState newGs of
         Playing ->

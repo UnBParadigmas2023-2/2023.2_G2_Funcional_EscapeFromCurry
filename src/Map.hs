@@ -14,8 +14,7 @@ import Graphics.Gloss
     translate,
     white,
   )
-import Types (CellState (..), GameState (..), Position, GameMap, PlayingState(..))
-import Monster (nextPositionBFS)
+import Types (CellState (..), GameState (..), Position, GameMap)
 import qualified Data.Map.Strict as Map
 import qualified System.Random as R
 
@@ -34,15 +33,15 @@ goalColor :: Color
 goalColor = blue
 
 cellSize :: Float
-cellSize = 10
+cellSize = 15
 
 displayGameMap :: GameState -> Picture
 displayGameMap gameState =
   translate (-400.0) (-400.0) . pictures $
     [ translate (fromIntegral x * cellSize) (fromIntegral y * cellSize) (cellStateToPicture cellState)
       | ((x, y), cellState) <- gameMapWithCoords
-    ] ++ [ translate (fromIntegral px * cellSize) (fromIntegral py * cellSize) (color green $ rectangleSolid cellSize cellSize)]
-      ++ [ translate (fromIntegral ex * cellSize) (fromIntegral ey * cellSize) (color red $ rectangleSolid cellSize cellSize)]
+    ] ++ [ translate (fromIntegral px * cellSize) (fromIntegral py * cellSize) (color green $ rectangleSolid cellSize cellSize) ]
+      ++ [ translate (fromIntegral ex * cellSize) (fromIntegral ey * cellSize) (color red $ rectangleSolid cellSize cellSize) ]
   where
     playerPos = playerPosition gameState
     (px, py) = playerPos

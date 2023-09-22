@@ -6,9 +6,9 @@ import Types (CellState (..), GameMap, GameState (..), Position, neighborsFor)
 validPosition :: GameMap -> Map.Map Position Position -> Position -> Bool
 validPosition gameMap father currentPosition =
     case Map.lookup currentPosition gameMap of
-        Just wall -> wall == Empty &&
+        Just wall -> (wall == Empty || wall == Goal) &&
             case Map.lookup currentPosition father of
-                Just _ -> False  
+                Just _ -> False
                 Nothing -> True  
         Nothing -> False 
 
@@ -28,8 +28,8 @@ nextPosition father currentPosition monsterPosition playerPosition =
       | otherwise -> nextPosition father fatherPosition monsterPosition playerPosition
     Nothing -> monsterPosition 
 
-nextPositionBFS :: GameState -> Position
-nextPositionBFS gameState =
-  let defaultFather = Map.singleton (enemyPosition gameState) (666, 666)
-      bfsResult = bfs gameState [enemyPosition gameState] defaultFather
-   in nextPosition bfsResult (playerPosition gameState) (enemyPosition gameState) (playerPosition gameState)
+nextPositionBFS :: Position -> Position -> GameState -> Position
+nextPositionBFS str fin gameState =
+  let defaultFather = Map.singleton (str) (666, 666)
+      bfsResult = bfs gameState [str] defaultFather
+   in nextPosition bfsResult (fin) (str) (fin)

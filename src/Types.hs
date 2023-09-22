@@ -16,6 +16,7 @@ data Direction
   | DirRight
   | DirDown
   | DirLeft
+  | DirNone
   deriving (Eq, Ord, Show)
 
 directions :: [Direction]
@@ -27,6 +28,7 @@ directionOffset = \case
   DirRight -> (1, 0)
   DirDown -> (0, 1)
   DirLeft -> (-1, 0)
+  DirNone -> (0, 0)
 
 offsets :: [Position]
 offsets = map directionOffset directions
@@ -53,7 +55,10 @@ data GameState = GameState
   , height :: Int
   , playerPosition :: Position
   , enemyPosition :: Position
+  , goalPosition :: Position
   , playingState :: PlayingState
+  , playerDirection :: Direction
   , totalTime :: Float
   , seed :: StdGen
+  , frameCount :: Integer
   }

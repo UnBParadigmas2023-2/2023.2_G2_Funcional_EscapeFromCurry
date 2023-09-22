@@ -1,4 +1,4 @@
-module Game (fps, drawGame, handleInput, updateGame, initializeGame, resetGame) where
+module Game (fps, drawGame, handleInput, updateGame, verifyInitialGame, resetGame) where
 
 import Graphics.Gloss
 import Graphics.Gloss.Interface.IO.Interact (Event)
@@ -8,11 +8,13 @@ import Monster
 import Player
 import Types
 import Generator
+import Data.Time.Clock.POSIX
+import Debug.Trace
 import qualified System.Random as R
 import qualified Data.Map.Strict as M
 
 fps :: Int
-fps = 5
+fps = 10
 
 windowWidth :: Int
 windowWidth = 800
@@ -21,30 +23,46 @@ windowHeight :: Int
 windowHeight = 800
 
 initializeGame :: R.StdGen -> GameState
-initializeGame s = 
-  let 
+initializeGame s =
+  let
     cs = round cellSize
     mazeWidth = windowWidth `div` cs
     mazeHeight = windowHeight `div` cs
-    maze = mkMaze mazeWidth mazeHeight 
+    maze = mkMaze mazeWidth mazeHeight
+    playerDir = DirNone
     (fullMaze, s'') = genMaze maze (0, 0) s
     (playerPos, s''') = initialPosition fullMaze s''
     (enemyPos, s'''') = initialPosition fullMaze s'''
     (goalPos, s''''') = initialPosition fullMaze s''''
     mazeWithGoal = M.fromList [(goalPos, Goal)] `M.union` fullMaze
-    
-  in 
-    GameState 
+
+  in
+    GameState
       { gameMap = mazeWithGoal
       , width = mazeWidth
       , height = mazeHeight
       , playerPosition = playerPos
+      , playerDirection = playerDir
       , enemyPosition = enemyPos
+      , goalPosition = goalPos
       , playingState = Menu
       , totalTime = 0
       , seed = s'''''
+      , frameCount = 0
       }
-   
+
+verifyInitialGame :: IO GameState
+verifyInitialGame = do
+  currentTime <- getPOSIXTime
+  let initialGame = initializeGame . R.mkStdGen $ round (currentTime * 1000)
+  let playerPos = playerPosition initialGame
+  let enemyPos = enemyPosition initialGame
+  let goalPos = goalPosition initialGame
+  if (nextPositionBFS enemyPos playerPos initialGame == enemyPos)
+    || (nextPositionBFS playerPos goalPos initialGame == playerPos)
+    then verifyInitialGame
+    else return initialGame
+
 resetGame :: GameState -> GameState
 resetGame gs = 
   let init' = initializeGame (seed gs) 
@@ -62,14 +80,22 @@ handleInput evt gs = case playingState gs of
 
 updateGame :: Float -> GameState -> GameState
 updateGame dt gs =
-  let newEnemyPosition = nextPositionBFS gs
-      newTime = totalTime gs + dt
-      newState = if newEnemyPosition == playerPosition gs then Lost else playingState gs
-   in case playingState gs of
+  let newGs = updatePlayer gs
+      newTime = totalTime newGs + dt
+      newFrameCount = frameCount newGs + 1
+      playerPos = playerPosition newGs
+      enemyPos = enemyPosition newGs
+      newEnemyPosition = if newFrameCount `mod` 3 == 0 then nextPositionBFS enemyPos playerPos newGs else enemyPosition newGs
+      newState = if newEnemyPosition == playerPosition newGs then Lost else playingState newGs
+   in case playingState newGs of
         Playing ->
-          gs {enemyPosition = newEnemyPosition, totalTime = newTime, playingState = newState}
-        _ -> gs
-
+          newGs 
+          { enemyPosition = newEnemyPosition
+          , totalTime = newTime
+          , playingState = newState
+          , frameCount = newFrameCount
+          }
+        _ -> newGs
 
 checkResult:: PlayingState -> String -> Picture
 checkResult Won time =
@@ -94,7 +120,6 @@ checkResult Menu _ =
       Translate (-350) (-100) $ Scale 0.3 0.3 $ Color black $ Text "Pressione 'P' para iniciar o jogo."
     ]
 
--- this should never happen.
 checkResult _ _ = undefined
 
 redirectPlayer :: Event -> GameState -> GameState

@@ -112,7 +112,6 @@ checkResult Lost time =
       Translate (-350) (-200) $ Scale 0.2 0.2 $ Color black $ Text $ "Tempo: " ++ time ++ "s"
     ]
 
--- this should never happen.
 checkResult _ _ = undefined
 
 redirectPlayer :: Event -> GameState -> GameState

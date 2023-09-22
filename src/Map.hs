@@ -30,7 +30,7 @@ emptyColor :: Color
 emptyColor = white
 
 goalColor :: Color
-goalColor = blue
+goalColor = green
 
 cellSize :: Float
 cellSize = 15
@@ -40,8 +40,8 @@ displayGameMap gameState =
   translate (-400.0) (-400.0) . pictures $
     [ translate (fromIntegral x * cellSize) (fromIntegral y * cellSize) (cellStateToPicture cellState)
       | ((x, y), cellState) <- gameMapWithCoords
-    ] ++ [ translate (fromIntegral px * cellSize) (fromIntegral py * cellSize) (color green $ rectangleSolid cellSize cellSize) ]
-      ++ [ translate (fromIntegral ex * cellSize) (fromIntegral ey * cellSize) (color red $ rectangleSolid cellSize cellSize) ]
+    ] ++ [ translate (fromIntegral px * cellSize) (fromIntegral py * cellSize) (color blue $ rectangleSolid cellSize cellSize)]
+      ++ [ translate (fromIntegral ex * cellSize) (fromIntegral ey * cellSize) (color red $ rectangleSolid cellSize cellSize)]
   where
     playerPos = playerPosition gameState
     (px, py) = playerPos

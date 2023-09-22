@@ -5,8 +5,7 @@
 **Paradigma**: Funcional<br>
 
 # Jogo Rodando
-![Alt Text](/assets/rodando_jogo.gif)
-
+![](assets/jogo1.gif)
 ## Alunos
 |Matrícula | Aluno |
 | -- | -- |

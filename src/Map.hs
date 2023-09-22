@@ -14,8 +14,7 @@ import Graphics.Gloss
     translate,
     white,
   )
-import Types (CellState (..), GameState (..), Position, GameMap, PlayingState(..))
-import Monster (nextPositionBFS)
+import Types (CellState (..), GameState (..), Position, GameMap)
 import qualified Data.Map.Strict as Map
 import qualified System.Random as R
 
@@ -34,7 +33,7 @@ goalColor :: Color
 goalColor = green
 
 cellSize :: Float
-cellSize = 10
+cellSize = 15
 
 displayGameMap :: GameState -> Picture
 displayGameMap gameState =

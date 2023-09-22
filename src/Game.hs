@@ -97,35 +97,47 @@ updateGame dt gs =
           }
         _ -> newGs
 
+thickText :: Float -> Color -> String -> Picture
+thickText thickness textColor text =
+  Pictures
+    [ Translate (-thickness) 0 $ Color textColor $ Text text
+    , Translate thickness 0 $ Color textColor $ Text text
+    , Translate 0 (-thickness) $ Color textColor $ Text text
+    , Translate 0 thickness $ Color textColor $ Text text
+    , Color textColor $ Text text
+    ]
+
 checkResult:: PlayingState -> String -> Picture
 checkResult Won time =
   Pictures
-    [ Translate (-510) 0 $ Scale 0.5 1 $ Color black $ Text "Parabens! Voce venceu o jogo!",
-      Translate (-350) (-100) $ Scale 0.3 0.3 $ Color black $ Text "Pressione 'P' para jogar novamente.",
-      Translate (-350) (-150) $ Scale 0.3 0.3 $ Color black $ Text "Pressione 'H' para jogar no modo DIFICIL.",
-      Translate (-350) (-200) $ Scale 0.3 0.3 $ Color black $ Text "Pressione 'Esc' para sair.",
-      Translate (-350) (-250) $ Scale 0.2 0.2 $ Color black $ Text $ "Tempo: " ++ time ++ "s"
+    [ Translate (-425) 100 $ Scale 0.43 0.43 $ thickText 2.3 black "Parabens! Voce venceu o jogo!",
+      Translate (-400) 0 $ Scale 0.3 0.3 $ thickText 2.3 black "Pressione 'P' para jogar novamente.",
+      Translate (-400) (-60) $ Scale 0.3 0.3 $ thickText 2.3 black "Pressione 'H' para jogar no modo DIFICIL.",
+      Translate (-400) (-120) $ Scale 0.3 0.3 $ thickText 2.3 black "Pressione 'Esc' para sair.",
+      Translate (-400) (-180) $ Scale 0.2 0.2 $ thickText 2.3 black $ "Tempo: " ++ time ++ "s"
     ]
     
 checkResult Lost time =
   Pictures
-    [ Translate (-200) 0 $ Scale 0.5 0.5 $ Color black $ Text "GAME OVER!",
-      Translate (-350) (-100) $ Scale 0.3 0.3 $ Color black $ Text "Pressione 'P' para jogar novamente.",
-      Translate (-350) (-150) $ Scale 0.3 0.3 $ Color black $ Text "Pressione 'H' para jogar no modo DIFICIL.",
-      Translate (-350) (-200) $ Scale 0.3 0.3 $ Color black $ Text "Pressione 'Esc' para sair.",
-      Translate (-350) (-250) $ Scale 0.2 0.2 $ Color black $ Text $ "Tempo: " ++ time ++ "s"
+    [ Translate (-200) 100 $ Scale 0.43 0.43 $ thickText 2.3 black "FIM DE JOGO!",
+      Translate (-400) 0 $ Scale 0.3 0.3 $ thickText 2.3 black "Pressione 'P' para jogar novamente.",
+      Translate (-400) (-60) $ Scale 0.3 0.3 $ thickText 2.3 black "Pressione 'H' para jogar no modo DIFICIL.",
+      Translate (-400) (-120) $ Scale 0.3 0.3 $ thickText 2.3 black "Pressione 'Esc' para sair.",
+      Translate (-400) (-180) $ Scale 0.2 0.2 $ thickText 2.3 black $ "Tempo: " ++ time ++ "s"
     ]
 
 checkResult Menu _ =
   Pictures
-    [ Translate (-200) 0 $ Scale 0.3 0.3 $ Color black $ Text "ESCAPE FROM CURRY!",
-      Translate (-350) (-100) $ Scale 0.3 0.3 $ Color black $ Text "Pressione 'P' para iniciar o jogo.",
-      Translate (-350) (-150) $ Scale 0.3 0.3 $ Color black $ Text "Pressione 'H' para jogar no modo DIFICIL."
+    [ Translate (-315) 50 $ Scale 0.43 0.43 $ thickText 2.3 black "ESCAPE FROM CURRY!",
+      Translate (-400) (-100) $ Scale 0.3 0.3 $ thickText 2.3 black "Pressione 'P' para iniciar o jogo.",
+      Translate (-400) (-150) $ Scale 0.3 0.3 $ thickText 2.3 black "Pressione 'H' para jogar no modo DIFICIL."
     ]
 
 checkResult _ _ = undefined
 
 redirectPlayer :: Event -> GameState -> GameState
 redirectPlayer (EventKey (Char 'p') Down _ _) gs = resetGame gs Easy
+redirectPlayer (EventKey (Char 'P') Down _ _) gs = resetGame gs Easy
 redirectPlayer (EventKey (Char 'h') Down _ _) gs = resetGame gs Hard
+redirectPlayer (EventKey (Char 'H') Down _ _) gs = resetGame gs Hard
 redirectPlayer _ gameState = gameState

@@ -4,6 +4,9 @@
 **Nro do Grupo**: 02<br>
 **Paradigma**: Funcional<br>
 
+# Jogo Rodando
+![Alt Text](/assets/rodando_jogo.gif)
+
 ## Alunos
 |Matrícula | Aluno |
 | -- | -- |

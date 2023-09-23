@@ -5,7 +5,7 @@
 **Paradigma**: Funcional<br>
 
 # Jogo Rodando
-![](assets/jogo1.gif)
+![](assets/jogoRodando.gif)
 ## Alunos
 |Matrícula | Aluno |
 | -- | -- |
@@ -24,9 +24,10 @@
 
 ## Screenshots
 ![](assets/Menu.png)
-![](assets/LabirintoRodando.png)
-![](assets/GameOver.png)
-
+![](assets/JogoRodandoFacil.png)
+![](assets/JogoRodandoDificil.png)
+![](assets/FimDeJogo.png)
+![](assets/VenceuJogo.png)
 
 ## Instalação 
 **Linguagens**: Haskell<br>
@@ -42,10 +43,16 @@
 1. Clone o repositório:
 
 ```bash
-git clone https://github.com/UnBParadigmas2023-2/2023.2_G2_Funcional
+git clone https://github.com/UnBParadigmas2023-2/2023.2_G2_Funcional_EscapeFromCurry
 ```
 
-2. Execute
+1. Acesse o repositório:
+
+```bash
+cd 2023.2_G2_Funcional_EscapeFromCurry
+```
+
+3. Execute
 
 ```bash
 stack build && stack exec EscapeFromCurry-exe
